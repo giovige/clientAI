@@ -396,8 +396,8 @@ inizializza_form(){
 
 openDialog_notification_confirm(msg: string): void {
   const dialogRef = this.dialog.open(NotificationComponent, {
-    height: '40%',
-    width: '40%',
+    width: '400px',
+      height: '250px',
     data: {
       text: msg
     }

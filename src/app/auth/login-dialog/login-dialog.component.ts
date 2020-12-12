@@ -52,7 +52,7 @@ export class LoginDialogComponent implements OnInit {
       this.authservice.login(val.email, val.password)
           .subscribe( 
             data => { this.dialogRef.close("ok"); },
-            error => this.myError='Login error!'
+            err => this.myError='Login error!'
           );
     }
   }
