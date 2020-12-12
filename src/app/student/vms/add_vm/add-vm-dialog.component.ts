@@ -31,7 +31,7 @@ export class AddVmDialogComponent implements OnInit {
   constructor(private fb: FormBuilder,private dialog: MatDialog, private studentService : StudentService, private authService: AuthService, 
     public dialogRef: MatDialogRef<AddVmDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
     this.form = this.fb.group({
-      testo: [''],
+      testo: ['', Validators.required],
       vcpu: ['', Validators.required],
       gbdisk: ['', Validators.required],
       gbram: ['', Validators.required]
@@ -43,6 +43,8 @@ export class AddVmDialogComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+
   openDialog_notification_confirm(msg: string): void {
     const dialogRef = this.dialog.open(NotificationComponent, {
       height: '50%',
@@ -50,7 +52,8 @@ export class AddVmDialogComponent implements OnInit {
       data: {
         text: msg
       }
-  }); }
+    }); 
+  }
 
 
   getErrorvcpuMessage() {
@@ -72,6 +75,12 @@ export class AddVmDialogComponent implements OnInit {
     }
   }
 
+
+  getErrorimgMessage() {
+    if(this.testo.hasError('required')){
+      return 'VM image required';
+    }
+}
 /* 
 
   addVM(): void {         //PostMapping("/{id}/teams/{teamId}/vm")
@@ -104,10 +113,10 @@ export class AddVmDialogComponent implements OnInit {
       this.selectedFiles = event.target.files;
     }
 
-   addVM(): void {        
-   this.currentFileUpload = this.selectedFiles.item(0);
+   addVM(): void { 
+   
    const val = this.form.value;
-   if(!this.form.invalid) {
+   if(!this.form.invalid) {this.currentFileUpload = this.selectedFiles.item(0);
      let vmtoAdd: Vm;
      vmtoAdd=val;
      this.studentService.createNewVM(this.studId, this.teamId, vmtoAdd).subscribe(
@@ -131,6 +140,9 @@ export class AddVmDialogComponent implements OnInit {
        this.openDialog_notification_confirm("Si è verificato un errore!")
 
      );
+   }
+   else{
+    this.openDialog_notification_confirm("Devi inserire tutti i campi richiesti per creare una VM!");
    }
  }
 

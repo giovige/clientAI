@@ -1,7 +1,7 @@
 import { DataSource } from '@angular/cdk/table';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NotificationComponent } from 'src/app/teacher/notification/notification.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
@@ -148,27 +148,33 @@ selectFile(event) {
 
 inizializza_form() {
   this.form = new FormGroup({
-    'testo': new FormControl()
+    'testo': new FormControl('', Validators.required)
   });
 }
 
 
 addEssay():void {
-  this.currentFileUpload = this.selectedFiles.item(0);
-  this.studentService.addStudentEssay(this.coursename, this.taskId,this.essayId,this.currentFileUpload).subscribe(
-    s => {
-      this.openDialog_notification_confirm("Il tuo elaborato è stato caricato correttamente!") 
-      this.getStorical();
-      this.selectedFiles = undefined;
-    
-    },
+  if(!this.form.invalid) {
+    this.currentFileUpload = this.selectedFiles.item(0);
+      this.studentService.addStudentEssay(this.coursename, this.taskId,this.essayId,this.currentFileUpload).subscribe(
+        s => {
+          this.openDialog_notification_confirm("Il tuo elaborato è stato caricato correttamente!") 
+          this.getStorical();
+          this.selectedFiles = undefined;
+        
+        },
 
-    err => {
-      this.openDialog_notification_confirm("Si è verificato un errore, ritenta!")
+        err => {
+          this.openDialog_notification_confirm("Il tuo elaborato ha una dimensione eccessiva! Riprova con un file più piccolo.")
 
-    }
+        }
 
-  );
+      );
+  }
+  else{
+    this.openDialog_notification_confirm("Devi inserire un file!");
+  }
+  
 }  
 
 

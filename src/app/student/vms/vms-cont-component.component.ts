@@ -114,7 +114,7 @@ export class VmsContComponentComponent implements OnInit {
         vms.forEach( vm => {
           let objectURL = 'data:image/png;base64,' + vm.screenVm;
           vm.screenVm = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-          console.log(vm.screenVm);
+          //console.log(vm.screenVm);
           this.studentService.isOwner(this.studentID,vm.id,this.teamId).subscribe (
             s => { vm.isOwner=s }
           )
