@@ -1,0 +1,48 @@
+.riga_collegamento_vm_button {
+    margin: 0 10px 0 15px;
+  }
+.division {
+  clear:both;
+
+}
+.card_vm {
+  float:left;
+  margin-right: 15px;
+  border-radius:16px;
+  border:1px solid grey;
+ padding:15px;
+ }
+
+
+mat-card {
+  display: flex;
+   justify-content: start; 
+   flex-direction: column; 
+   flex-wrap: wrap;
+}
+
+.button_spento {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button_acceso {
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}

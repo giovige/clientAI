@@ -1,0 +1,49 @@
+
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>Configurazione limiti utilizzo risorse</h1>
+    <h2>{{data.team_selected.name}}</h2>
+    <div class="form-field">
+      <label class="text-white">GB Ram Totali</label><br>
+      <input formControlName="gbramtotali">
+    </div>
+    <div class="form-field">
+      <label class="text-white">Numero massimo VM accese</label><br>
+      <input formControlName="maxvmaccese">
+    </div>
+    <div class="form-field">
+      <label class="text-white">Gb Disk Totali</label><br>
+      <input formControlName="gbdisktotali">
+    </div>
+    <div class="form-field">
+      <label class="text-white">VCPU Totali</label><br>
+      <input formControlName="vcputotali">
+    </div>
+    <h2>Specchietto riassuntivo team</h2>
+    <div class="form-field">
+      <label class="text-white">Gb Ram Usati</label><br>
+      <input formControlName="gbramusati" readonly>
+    </div>
+      <div class="form-field">
+        <label class="text-white">Gb Disk Usati</label><br>
+        <input formControlName="gbdiskusati" readonly>
+      </div>
+      <div class="form-field">
+        <label class="text-white">Vm Accese</label><br>
+        <input formControlName="vmaccese" readonly>
+      </div>
+
+      <div class="form-field">
+        <label class="text-white">Status</label><br>
+        <input formControlName="status" readonly>
+      </div>
+
+      <div class="form-field">
+        <label class="text-white">VCPU Usate</label><br>
+        <input formControlName="vcpuusate" readonly>
+      </div>
+    <br/>
+    <button type="submit">Submit</button>
+  </form>
+  <br/>
+

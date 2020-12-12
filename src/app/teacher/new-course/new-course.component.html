@@ -1,0 +1,47 @@
+<div class="container"><div class="form-group">
+  <form (ngSubmit)="onSubmit()">
+    <!--<label for="power">Hero Power</label>
+    <select class="form-control" id="power" required>
+      <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+    </select>-->
+    <label for="name">Nome corso</label>
+    <input ngModel required type="text" class="form-control" id="name"
+    required
+    [(ngModel)]="model.name" name="name">
+    <label for="min">Min</label>
+    <input ngModel required type="number" class="form-control" id="min"
+    required
+    [(ngModel)]="model.min" name="min">
+    <label for="max">Max</label>
+    <input ngModel required type="number" class="form-control" id="max"
+    required
+    [(ngModel)]="model.max" name="max">
+    <label for="min">Enabled</label>
+    <input type="checkbox" class="form-control" id="enabled"
+    ngModel required
+    [(ngModel)]="model.enabled" name="enabled">
+    <label for="cpu">Modello Virtual Machine CPU</label>
+    <input ngModel required type="number" class="form-control" id="cpu"
+    required
+    [(ngModel)]="model.modelVM_cpu" name="cpu"> 
+     <label for="gbdisk">Modello Virtual Machine Gb Disk</label>
+    <input ngModel required type="number" class="form-control" id="gbdisk"
+    required
+    [(ngModel)]="model.modelVM_GBDisk" name="gbdisk"> 
+       <label for="gbram">Modello Virtual Machine Gb Ram</label>
+    <input ngModel required type="number" class="form-control" id="gbram"
+    required
+    [(ngModel)]="model.modelVM_GBRam" name="gbram">
+
+    <label for="max">Aggiungi altri docenti</label>
+
+
+    
+<app-teacher-cont (addEmitter_professors)="scelta_professori($event)" [all_prof]="all_prof" ></app-teacher-cont>
+
+
+    <!-- <button class="addButton" mat-button (click)="create_course()">Create course</button>
+
+    Lo sto commentando perche la submit c'è gia in app-teacher-cont-->
+  </form>
+  </div></div>

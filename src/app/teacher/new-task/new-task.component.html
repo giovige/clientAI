@@ -1,0 +1,29 @@
+ <div class="container"><div class="form-group">
+ <!--   <form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="onSubmit()">
+        <h1>Crea nuova consegna:</h1>
+          <div class="form-field">
+            <label class="text-white">Numero giorni scadenza</label><br>
+            <input type="number" class="form-control" formControlName="dataScadenza">
+          </div>  
+          <div class="form-field">
+            <label class="text-white">Testo</label><br>
+            <input type="file" class="form-control"  formControlName="testo">
+          </div> 
+
+        <button type="submit">Submit</button> 
+
+      </form> -->
+      <form [formGroup]="form"  (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+      <h1>Crea nuova consegna</h1>
+      <div class="form-field">
+        <label class="text-white">Carica testo (img)</label><br>
+        <input type="file" id="customFile" formControlName="testo" (change)="selectFile($event)">
+      </div>  
+      <div class="form-field">
+        <label class="text-white">Numero giorni scadenza</label><br>
+        <input type="number" formControlName="giorniScadenza" class="form-control">
+      </div>  
+      <button class="btn btn-primary">Carica consegna</button>
+  <br/></form>
+    
+    </div></div>

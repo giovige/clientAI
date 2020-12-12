@@ -1,0 +1,42 @@
+
+     <!--
+         Bottoni per: crea nuovo task, ordinamento
+     --> 
+       <button class="bottoni_task" [routerLink]="['/teacher/courses/', course_name,'new_task']" mat-raised-button color="primary">+ Crea nuova consegna</button>
+
+          <button  class="bottoni_task" mat-raised-button color="primary"(click)="orderingTaskbyDataScadenza()">
+            Ordina per data scadenza
+          </button>
+          <button  class="bottoni_task" mat-raised-button color="primary"(click)="orderingTaskbyDataRilascio()">
+            Ordina per data rilascio
+          </button>
+
+
+<!--ELENCO TASK-->
+<div *ngFor="let cont of essay_per_task | keyvalue ; index as i">
+    <mat-card>
+        <mat-card-title>
+         Task: {{cont.key.id}}
+         <!--<img [src]="cont.key.description">-->
+         <a class="text_download" [href]="cont.key.description" download="consegna.png"><span class="material-icons">
+          get_app
+          </span> Download testo</a>
+        </mat-card-title>
+     <mat-card-subtitle>
+Data rilascio: {{cont.key.dataRilascio}}  -  
+Data scadenza: {{cont.key.dataScadenza}}
+    </mat-card-subtitle>
+     <mat-card-content>
+        <span style="color:red;">Lista elaborati studenti</span>
+<!--LISTA ELABORATI STUDENTI IN MAT TABLE-->
+        <app-essay-cont  [course_name]="course_name" [task_id]="cont.key.id" [essay_per_task]="cont.value" ></app-essay-cont>
+
+
+     </mat-card-content>
+ </mat-card>  
+
+
+
+<mat-divider></mat-divider>
+</div>
+ 

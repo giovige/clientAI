@@ -1,0 +1,44 @@
+<div class="container"><div class="form-group">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <h1>Modifica corso : {{course_name}}</h1>
+        
+    <div class="form-field">
+        <label class="text-white">Nome corso</label><br>
+        <input type="text" class="form-control" id="name"
+        required formControlName="nome_corso" readonly>
+    </div>
+      <div class="form-field">
+        <label class="text-white">Min</label><br>
+        <input class="form-control" formControlName="min">
+      </div>
+      <div class="form-field">
+        <label class="text-white">Max</label><br>
+        <input class="form-control" formControlName="max">
+      </div>
+      <div class="form-field">
+        <label class="text-white">Modello VM CPU</label><br>
+        <input class="form-control" formControlName="cpu">
+      </div>     
+       <div class="form-field">
+        <label class="text-white">Modello VM Gb Disk</label><br>
+        <input class="form-control" formControlName="gbdisk">
+      </div>   
+         <div class="form-field">
+        <label class="text-white">Modello VM Gb Ram</label><br>
+        <input class="form-control" formControlName="gbram">
+      </div>
+      <div class="form-field">
+        <label class="checkbox-white">Enabled</label><br>
+        <input type="checkbox" class="form-control" id="enabled"
+        required formControlName="enabled">
+      </div>
+      <app-teacher-cont (addEmitter_professors)="scelta_professori($event)" [all_prof]="all_prof" ></app-teacher-cont>
+
+   
+    <br/>
+    <!-- <button type="submit">Submit</button> 
+    Lo sto commentando perche la submit c'è gia in app-teacher-cont-->
+  </form>
+  <br/>
+
+</div></div>
