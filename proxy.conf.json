@@ -1,20 +1,19 @@
 {
   "/API/*": {
-  "target": "http://localhost:8080",
-  "secure": false,
-  "changeOrigin": true,
-  "logLevel": "debug",
-  "pathRewrite": {"^/API" : "http://localhost:8080/API"}
-  }
-,
-
-
-  "/auth/signin": {
-  "target": "http://localhost:8080/auth/signin",
-  "secure": false,
-  "changeOrigin": true,
-  "logLevel": "debug",
-    "pathRewrite": {"^/auth/signin" : "http://localhost:8080/"}
-
-  }
+    "target": "http://localhost:8080",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {"^/API" : "http://localhost:8080/API"}
+    }
+  ,
+  
+    "/auth/*": {
+    "target": "http://localhost:8080/",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+      "pathRewrite": {"^/auth" : "http://localhost:8080/"}
+  
+    }
 }
