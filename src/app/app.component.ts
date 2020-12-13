@@ -156,7 +156,7 @@ constructor(private teacherService:TeacherService,private sanitizer: DomSanitize
       this.teacherService.getProfessorById(this.id)
         .subscribe (s => {
           console.log(s);
-          if(s.photoDocente==null)
+          if(s.photoDocente=='MHg=')
           this.photo="/assets/standard_img.png";
           else {
           let objectURL = 'data:image/png;base64,' + s.photoDocente;
@@ -171,9 +171,9 @@ constructor(private teacherService:TeacherService,private sanitizer: DomSanitize
           this.teacherService.getStudentById(this.id)
           .subscribe (s => {
             console.log(s);
-            if(s.photoStudent==null)
+            if(s.photoStudent=='AA=='){
             this.photo="/assets/standard_img.png";
-            else {
+            }else {
             let objectURL = 'data:image/png;base64,' + s.photoStudent;
             //this.thumbnail = this.sanitizer.bypassSecurityTrustUrl(objectURL);
             this.photo = this.sanitizer.bypassSecurityTrustUrl(objectURL); }

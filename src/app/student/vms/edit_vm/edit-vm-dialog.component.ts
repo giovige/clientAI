@@ -63,7 +63,7 @@ export class EditVmDialogComponent implements OnInit {
       return 'vcpu value required';
     }
     if(this.vcpu.hasError('min')){
-      return 'gdsfgfsdgdfsg';
+      return 'error';
     }
 }
 
@@ -72,7 +72,7 @@ export class EditVmDialogComponent implements OnInit {
       return 'gbdisk value required';
     }
     if(this.gbdisk.hasError('min')){
-      return 'gsdfdgfdgsdf';
+      return 'error';
     }
   }
 
@@ -82,7 +82,7 @@ export class EditVmDialogComponent implements OnInit {
       return 'gbram value required';
     }
     if(this.gbram.hasError('min')){
-      return 'fdgdfgdsfgsfdg';
+      return 'error';
     }
   }
 
