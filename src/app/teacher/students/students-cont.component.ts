@@ -2,6 +2,8 @@ import { Component, ViewChild, ElementRef, OnInit, Output, Input, AfterViewInit 
 import {Student} from 'src/app/student.model'
 import { ActivatedRoute } from '@angular/router';
 import { TeacherService } from '../../service/teacher.service';
+import { NotificationComponent } from '../notification/notification.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -17,7 +19,7 @@ export class StudentsContComponent implements OnInit {
   id_course: string;
   course_name: string;
 
-  constructor(private teacherService: TeacherService,private activatedRoute: ActivatedRoute ) {
+  constructor(private teacherService: TeacherService,private activatedRoute: ActivatedRoute,private dialog: MatDialog ) {
       this.enrolled = [];
       this.students = [];
 
@@ -36,6 +38,15 @@ export class StudentsContComponent implements OnInit {
     
   }
   
+
+  openDialog_notification_confirm(msg: string): void {
+    const dialogRef = this.dialog.open(NotificationComponent, {
+      width: '400px',
+      height: '250px',
+      data: {
+        text: msg
+      }
+  }); }
 
 
   //implementazione service
@@ -62,8 +73,12 @@ export class StudentsContComponent implements OnInit {
 
   onAdded_csv(csv_file: File): void {
     this.teacherService.updateAdd_csv(this.course_name,csv_file)
-    .subscribe( _ => 
+    .subscribe( s => 
           { this.getEnrolledStudents(); 
+          },
+          err => {
+            this.openDialog_notification_confirm("Si è verificato un errore: inserisci un file csv nel formato corretto.");
+            
           }
           
         );

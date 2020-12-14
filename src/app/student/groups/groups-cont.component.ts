@@ -20,6 +20,7 @@ import { Token } from 'src/app/token.model';
 import { StudentRequest } from 'src/app/student-request.model';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { NotificationComponent } from 'src/app/teacher/notification/notification.component';
+import { LoadingDialogComponent } from 'src/app/teacher/notification/loading-dialog.component';
 
 
 
@@ -280,11 +281,17 @@ sendTeamRequest() {     //@@@@@@invia richiesta
     console.log(val.newGroupName);
     console.log(val.timeoutRequest);
     console.log(membersList);
+    this.openDialog_loading("Invio della richiesta in corso...Rimani in attesa.");
     this.studentService.proposeTeamRequest(this.course_name, membersList, val.newGroupName, val.timeoutRequest).subscribe(
       res => {
+      this.dialog.closeAll();
       this.openDialog_notification_confirm("La proposta per il team "+val.newGroupName+" è stata creata con successo! La durata è di "+val.timeoutRequest+" ore!");
-      this.ngOnInit(); },
-      err => this.openDialog_notification_confirm("Si è verificato un errore !"))
+      this.ngOnInit(); 
+    },
+      err => {
+        this.dialog.closeAll();
+        this.openDialog_notification_confirm("Si è verificato un errore !")
+      })
   }
   this.selection = new SelectionModel<Student>(true, []);
   
@@ -397,17 +404,22 @@ inizializza_form(){
 openDialog_notification_confirm(msg: string): void {
   const dialogRef = this.dialog.open(NotificationComponent, {
     width: '400px',
-      height: '250px',
+    height: '250px',
     data: {
       text: msg
     }
 }); }
 
 
-//Parte visualizazzione del team creato da me
-myTeamStatus(): void {
-
-}
+openDialog_loading(msg: string): void {
+  const dialogRef = this.dialog.open(LoadingDialogComponent, {
+    disableClose: true,
+    width: '350px',
+    height: '400px',
+    data: {
+      text: msg
+    }
+}); }
 
 
 }

@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { User } from '../../user.model';
 import { User_registration } from '../../user_registration.model';
 import { NotificationComponent } from 'src/app/teacher/notification/notification.component';
+import { LoadingDialogComponent } from 'src/app/teacher/notification/loading-dialog.component';
 import { validateHorizontalPosition } from '@angular/cdk/overlay';
 
 @Component({
@@ -87,31 +88,44 @@ getErrorCognomeMessage() {
       this.userDTO.nome=val.nome;
       this.userDTO.cognome=val.cognome;
       console.log(this.userDTO);
+      this.openDialog_loading("Invio della richiesta in corso...Rimani in attesa.");
       this.authservice.registration(this.userDTO)
           .subscribe( 
             data => { 
               this.dialogRef.close("ok");
-              this.openDialog_notification_confirm(); },
-            error => this.myError='Registration error!'
+              this.dialog.closeAll();
+              this.openDialog_notification_confirm("E'stata mandata una mail a "+this.userDTO.email+" con il link per confermare la creazione dell'account."); },
+            error => {
+              this.dialog.closeAll();
+              this.openDialog_notification_confirm("Si è verificato un errore: lo username è già registrato nel sistema.");
+              this.myError='Registration error!'}
           );
     } 
   else this.myError="Email e ruolo non compatibili"; }
     else this.myError="Invalid form";
   }
 
-  openDialog_notification_confirm(): void {
+  openDialog_notification_confirm(msg:string): void {
       const dialogRef = this.dialog.open(NotificationComponent, {
-        height: '40%',
-        width: '40%',
+        width: '400px',
+        height: '250px',
         data: {
-          text: "E'stata mandata una mail a "+this.userDTO.email+" con il link per confermare la creazione dell'account."
+          text : msg
         }
     });
      
-      
-    
   }
 
+  openDialog_loading(msg:string): void {
+    const dialogRef = this.dialog.open(LoadingDialogComponent, {
+      disableClose: true,
+      width: '350px',
+      height: '400px',
+      data: {
+        text : msg
+      }
+  });
+  }
  /* logout() {
     console.log("logout in LoginDialogComponent");
     this.authservice.logout();

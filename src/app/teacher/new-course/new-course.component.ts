@@ -48,8 +48,8 @@ export class NewCourseComponent implements OnInit {
 
   openDialog_notification_confirm(msg: string): void {
     const dialogRef = this.dialog.open(NotificationComponent, {
-      height: '20%',
-      width: '20%',
+      width: '400px',
+      height: '250px',
       data: {
         text: msg
       }

@@ -167,8 +167,8 @@ this.pushSoluzione(this.course_name,this.task_id,this.essay_id,this.currentFileU
       
   openDialog_notification_confirm(msg: string): void {
     const dialogRef = this.dialog.open(NotificationComponent, {
-      height: '20%',
-      width: '20%',
+      width: '400px',
+    height: '250px',
       data: {
         text: msg
       }

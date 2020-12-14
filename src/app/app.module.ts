@@ -55,6 +55,8 @@ import { MenuStudentComponent } from './student/menu-student/menu-student.compon
 import { EditOwnersComponent } from './student/vms/edit-owners/edit-owners.component';
 import { MembersContComponent } from './student/vms/members-cont/members-cont.component';
 import {MatDatepickerModule,} from '@angular/material/datepicker';
+import { LoadingDialogComponent } from './teacher/notification/loading-dialog.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -90,6 +92,7 @@ import {MatDatepickerModule,} from '@angular/material/datepicker';
     MenuStudentComponent,
     EditOwnersComponent,
     MembersContComponent,
+    LoadingDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -115,7 +118,8 @@ import {MatDatepickerModule,} from '@angular/material/datepicker';
     MatCardModule,
     MatSelectModule,
     MatRadioModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatProgressSpinnerModule
   ],
   providers: [ {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true} ],
   bootstrap: [AppComponent],
