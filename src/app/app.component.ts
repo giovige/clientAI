@@ -190,14 +190,7 @@ constructor(private teacherService:TeacherService,private sanitizer: DomSanitize
     }
     
   reload_courses() {
-
-    this.teacherService.getCourses()
-          .subscribe(s => {
-            this.courses = s;
-            this.course_list = false;
-            setTimeout(() => this.course_list = true);
-          });
-    
+    this.getCoursesProf();
   }
 
   reload_img() {
