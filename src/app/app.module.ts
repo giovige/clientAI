@@ -57,6 +57,7 @@ import { MembersContComponent } from './student/vms/members-cont/members-cont.co
 import {MatDatepickerModule,} from '@angular/material/datepicker';
 import { LoadingDialogComponent } from './teacher/notification/loading-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ConfirmDeleteDialogComponent } from './teacher/confirm-delete-dialog/confirm-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     EditOwnersComponent,
     MembersContComponent,
     LoadingDialogComponent,
+    ConfirmDeleteDialogComponent,
   ],
   imports: [
     BrowserModule,

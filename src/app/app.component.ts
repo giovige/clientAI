@@ -21,6 +21,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TeacherService } from './service/teacher.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RegistrationDialogComponent } from './auth/registration-dialog/registration-dialog.component';
+import { NotificationComponent } from './teacher/notification/notification.component';
+import { ConfirmDeleteDialogComponent } from './teacher/confirm-delete-dialog/confirm-delete-dialog.component';
 
 
 @Component({
@@ -142,8 +144,44 @@ constructor(private teacherService:TeacherService,private sanitizer: DomSanitize
     });
     
   }
-  
+//dialog messaggi di conferma
+  openDialog_notification_confirm(msg: string): void {
+    const dialogRef = this.dialog.open(NotificationComponent, {
+      width: '400px',
+      height: '250px',
+      data: {
+        text: msg
+      }}); 
 
+ }
+
+     //dialog CONFERMA DELETE COURSE
+  openDialog_confirm_delete_course(msg: string,courseName: string): void {
+    const dialogRef = this.dialog.open(ConfirmDeleteDialogComponent, {
+      width: '500px',
+      height: '500px',
+      data: {
+        text: msg
+      }}); 
+      dialogRef.afterClosed().subscribe( end => {
+        if(end=="delete") {
+          //
+          this.delete_course(courseName);
+       }
+       
+     });}
+
+
+  
+  delete_course(name) {
+    this.teacherService.deleteCourse(name)
+    .subscribe(s => {
+      this.openDialog_notification_confirm("Operazione effettuata con successo!");
+    },
+    err => { 
+      this.openDialog_notification_confirm("Si è verificato un errore...");
+    });
+  }
 
     getCoursesProf(): void {
       this.teacherService.getCoursesByProf(this.id)
@@ -256,16 +294,11 @@ constructor(private teacherService:TeacherService,private sanitizer: DomSanitize
   */
   
   clicked_delete(name:string) : void {
-    if(confirm("Are you sure to delete "+name)) {
-      console.log("Implement delete functionality here");
-    }
-      this.teacherService.deleteCourse(name)
-          .subscribe(s => console.log("asd"));
+    this.openDialog_confirm_delete_course("Sei sicuro di voler eliminare il corso ''"+name+"''?",name);
     }
 
 	clicked_edit(course_name:string) : void {
     this.course_name=course_name;
-
 	}
 
   getID(){

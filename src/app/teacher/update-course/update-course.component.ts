@@ -17,10 +17,12 @@ export class UpdateCourseComponent implements OnInit {
   course: Course;
   form: FormGroup;
   all_prof: Teacher[];
+  docentiCorso: Teacher[];
   selected_prof: Teacher[];
 
   constructor(private teacherService: TeacherService,private activatedRoute: ActivatedRoute,private dialog: MatDialog) { 
     this.all_prof=[];
+    this.docentiCorso=[];
     this.activatedRoute.params.subscribe(p => {
       this.course_name = p['course_name'];
       } )
