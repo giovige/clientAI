@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import {Team} from '../../team.model';
 import { TeacherService } from 'src/app/service/teacher.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
@@ -12,27 +12,33 @@ import { NotificationComponent } from 'src/app/teacher/notification/notification
 })
 export class GroupDialogInfoComponent implements OnInit {
 
-
-  form: FormGroup;
-  coidValue: string = '';
-  conameValue: string = '';
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private dialog: MatDialog,public dialogRef: MatDialogRef<GroupDialogInfoComponent>,private teacherService:TeacherService) { }
   team: Team = this.data.team_selected;
+  form: FormGroup;
 
-  ngOnInit(): void {
-    alert(this.data.team_selected.gbramTot);
-    this.form = new FormGroup({
-      'gbramtotali': new FormControl(this.data.team_selected.gbramTot,[]),
-      'gbramusati': new FormControl(this.data.team_selected.gbramUsati,[]),
-      'gbdisktotali': new FormControl(this.data.team_selected.gbdiskTot,[]),
-      'gbdiskusati': new FormControl(this.data.team_selected.gbdiskUsati,[]),
-      'vmaccese': new FormControl(this.data.team_selected.vmAccese,[]),
-      'maxvmaccese': new FormControl(this.data.team_selected.maxVmAccese,[]),
-      'status': new FormControl(this.data.team_selected.status,[]),
-      'vcputotali': new FormControl(this.data.team_selected.vcpuTot,[]),
-      'vcpuusate': new FormControl(this.data.team_selected.vcpuUsati,[])
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private dialog: MatDialog,private fb: FormBuilder,public dialogRef: MatDialogRef<GroupDialogInfoComponent>,private teacherService:TeacherService) { 
+
+
+    this.team = data.team_selected;
+    let status: string;
+    if(this.team.status==1) status="ATTIVO";
+    else status="NON ATTIVO";
+
+
+
+    this.form = this.fb.group({
+      gbramtotali: [ this.team.gbramTot , Validators.min(1)],
+      gbramusati: [  this.team.gbramUsati ],
+      gbdiskusati: [ this.team.gbdiskUsati ],
+      gbdisktotali: [ this.team.gbdiskTot , Validators.min(1)],
+      vmaccese: [ this.team.vmAccese],
+      maxvmaccese: [ this.team.maxVmAccese ],
+      status: [ status],
+      vcputotali: [ this.team.vcpuTot],
+      vcpuusate: [ this.team.vcpuUsati]
     });
   }
+
+  ngOnInit(): void {}
 
   onSubmit() {
 
@@ -42,7 +48,6 @@ export class GroupDialogInfoComponent implements OnInit {
       this.dialogRef.close("refresh");
     },
                err => {
-                 console.log(err);
                  this.openDialog_notification_confirm("Impossibile completare l'operazione");
                  this.dialogRef.close("err");
 

@@ -132,20 +132,20 @@ export class StudentService {
       });
   }
 
-
+//CAMBIO IL PATH IN STUDENTS/, perchè notification è @Controller ( per le mail ) e non RestController
   acceptRequest(tokenString: string): Observable<any> {
-    let path = this.API_PATH + 'notification/' + 'confirm/' + tokenString;
+    let path = this.API_PATH + 'students/' + 'confirm/' + tokenString;
     return this.http.get<any>(path);
   }
 
-
+//CAMBIO IL PATH IN STUDENTS/, perchè notification è @Controller ( per le mail ) e non RestController
   rejectRequest(tokenString: string): Observable<any> {
-    let path = this.API_PATH + 'notification/' + 'reject/' + tokenString;
+    let path = this.API_PATH + 'students/' + 'reject/' + tokenString;
     return this.http.get<any>(path);
   }
 
   getMyRequestsAsCreator(student_id: string, course_name: string ): Observable<any> {
-    let path = this.API_PATH + 'students/' + student_id + '/courses/' + course_name + '/myRequestsAsCreator';
+    let path = this.API_PATH + 'studentss/' + student_id + '/courses/' + course_name + '/myRequestsAsCreator';
     return this.http.get<any>(path);
   }
 

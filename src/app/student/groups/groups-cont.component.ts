@@ -307,8 +307,8 @@ accept(tok :string,teamId: string) {
       //devo aggiornare il component
       this.ngOnInit();
      },
-     err =>
-     this.openDialog_notification_confirm("Impossibile accettare la richiesta...")     
+     err => {
+     this.openDialog_notification_confirm("Impossibile accettare la richiesta..."); }
      );
 }
 

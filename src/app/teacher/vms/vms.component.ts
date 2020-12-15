@@ -39,13 +39,17 @@ export class VmsComponent implements OnInit {
   getTeams(): void {
     this.teacherService.getTeamsByCourse(this.course_name)
         .subscribe( s => {
+          this.teams=[];
           this.teams = s;
-          this.getVMSforEachGroup(this.teams); 
+          this.getVMSforEachGroup(); 
         });
   }
 
-  getVMSforEachGroup(teams: Team[]): void {
+  getVMSforEachGroup(): void {
+    //pulisco prima
     let vms: Vm[] = [];
+    this.vms_per_team.clear(); 
+
     this.teams.forEach(team => { 
       this.teacherService.getVMS(this.course_name,team.id)
       .subscribe( s => {
@@ -66,7 +70,8 @@ export class VmsComponent implements OnInit {
     
     openDialogGroup(team: Team): void {
         const dialogRef = this.dialog.open(GroupDialogInfoComponent, {
-          width: '250px' ,
+          width: '30%' ,
+          height: '90%',
           data: { team_selected: team , course: this.course_name }
       });
         dialogRef.afterClosed().subscribe( end => {
@@ -77,7 +82,7 @@ export class VmsComponent implements OnInit {
             //
           }
           if(end=="refresh") {
-            this.getTeams();
+            this.getTeams(); //riprendo i team per caricare la nuova configurazione
           }
         });
         

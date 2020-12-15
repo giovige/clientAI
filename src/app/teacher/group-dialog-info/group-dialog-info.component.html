@@ -1,49 +1,74 @@
 
+  <p mat-dialog-title><mat-icon>edit</mat-icon>&nbsp;Modifica VM</p>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h1>Configurazione limiti utilizzo risorse</h1>
-    <h2>{{data.team_selected.name}}</h2>
-    <div class="form-field">
-      <label class="text-white">GB Ram Totali</label><br>
-      <input formControlName="gbramtotali">
-    </div>
-    <div class="form-field">
-      <label class="text-white">Numero massimo VM accese</label><br>
-      <input formControlName="maxvmaccese">
-    </div>
-    <div class="form-field">
-      <label class="text-white">Gb Disk Totali</label><br>
-      <input formControlName="gbdisktotali">
-    </div>
-    <div class="form-field">
-      <label class="text-white">VCPU Totali</label><br>
-      <input formControlName="vcputotali">
-    </div>
-    <h2>Specchietto riassuntivo team</h2>
-    <div class="form-field">
-      <label class="text-white">Gb Ram Usati</label><br>
-      <input formControlName="gbramusati" readonly>
-    </div>
-      <div class="form-field">
-        <label class="text-white">Gb Disk Usati</label><br>
-        <input formControlName="gbdiskusati" readonly>
-      </div>
-      <div class="form-field">
-        <label class="text-white">Vm Accese</label><br>
-        <input formControlName="vmaccese" readonly>
-      </div>
+<mat-dialog-content class="mat-login">
+    <form [formGroup]="form">
+    <section>
+      <h1>Configurazione limiti utilizzo risorse</h1>
+      <h2>{{data.team_selected.name}}</h2>
+          
+      <mat-form-field appearance="fill">
+          <mat-label>GB Ram totali</mat-label>
+          <input matInput type="number" formControlName="gbramtotali" placeholder="Ex. 1"  min="1">
+          <span matSuffix></span>
+      </mat-form-field>
+      <br>
 
-      <div class="form-field">
-        <label class="text-white">Status</label><br>
-        <input formControlName="status" readonly>
-      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>Numero massimo VM accese </mat-label>
+        <input matInput type="number" formControlName="maxvmaccese" placeholder="Ex. 2"  min="0">
+        <span matSuffix>VM</span>
+      </mat-form-field>
+      <br>
 
-      <div class="form-field">
-        <label class="text-white">VCPU Usate</label><br>
-        <input formControlName="vcpuusate" readonly>
-      </div>
-    <br/>
-    <button type="submit">Submit</button>
+      <mat-form-field appearance="fill">
+        <mat-label>GB Disk totali</mat-label>
+        <input matInput type="number" formControlName="gbdisktotali" placeholder="Ex. 2"  min="0">
+        <span matSuffix>GB</span>
+      </mat-form-field>
+      <br>
+<!--disabled, info-->
+<h2>Specchietto riassuntivo</h2>
+      <mat-form-field appearance="fill">
+        <mat-label>GB Disk usati</mat-label>
+        <input matInput type="number" formControlName="gbdiskusati"  readonly>
+        <span matSuffix>GB</span>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Vm Accese</mat-label>
+        <input matInput type="number" formControlName="vmaccese"  readonly>
+        <span matSuffix>VM</span>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Stato</mat-label>
+        <input matInput type="text" formControlName="status" readonly >
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>VCPU Usate</mat-label>
+        <input matInput type="number" formControlName="vcpuusate" readonly>
+        <span matSuffix>VCPU</span>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>VCPU totali</mat-label>
+        <input matInput type="number" formControlName="vcputotali" readonly >
+        <span matSuffix>VCPU</span>
+      </mat-form-field>
+
+
+
+
+
+        <br>
+        <br>
+        <button mat-raised-button color="primary" (click)="onSubmit()">Conferma</button>
+        <button mat-raised-button style="margin-left: 20px;" color="warn" mat-dialog-close>Annulla</button>
+        <br>            
+        <br>    
+    </section>
   </form>
-  <br/>
-
+</mat-dialog-content>
