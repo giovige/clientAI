@@ -145,7 +145,7 @@ export class StudentService {
   }
 
   getMyRequestsAsCreator(student_id: string, course_name: string ): Observable<any> {
-    let path = this.API_PATH + 'studentss/' + student_id + '/courses/' + course_name + '/myRequestsAsCreator';
+    let path = this.API_PATH + 'students/' + student_id + '/courses/' + course_name + '/myRequestsAsCreator';
     return this.http.get<any>(path);
   }
 
