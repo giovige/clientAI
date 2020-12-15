@@ -145,13 +145,13 @@ getInfoUser(): void {
 
 
 public checkPhoto_prof() {
-  if(this.info_teacher.photoDocente==null) {
+  if(this.info_teacher.photoDocente==null || this.info_teacher.photoDocente=="") {
   return true; }
   else return false;
 }
 
 public checkPhoto_student() {
-  if(this.info_student.photoStudent==null) {
+  if(this.info_student.photoStudent==null || this.info_student.photoStudent=="") {
   return true; }
   else return false;
 }
