@@ -113,7 +113,7 @@ getInfoUser(): void {
   this.teacherService.getProfessorById(this.authService.getUserId())
     .subscribe (s => {
       console.log(s);
-      if(s.photoDocente==null) this.info_teacher.photoDocente=null;
+      if(s.photoDocente==null || s.photoDocente=="") this.info_teacher.photoDocente=null;
       else {
       let objectURL = 'data:image/png;base64,' + s.photoDocente;
       this.info_teacher.photoDocente = this.sanitizer.bypassSecurityTrustUrl(objectURL); }
@@ -129,7 +129,7 @@ getInfoUser(): void {
 
       this.teacherService.getStudentById(this.authService.getUserId())
       .subscribe (s => {
-        if(s.photoStudent==null) this.info_student.photoStudent=null;
+        if(s.photoStudent==null ||s.photoStudent=="") this.info_student.photoStudent=null;
         else {
         let objectURL = 'data:image/png;base64,' + s.photoStudent;
         this.info_student.photoStudent = this.sanitizer.bypassSecurityTrustUrl(objectURL); }
@@ -145,13 +145,14 @@ getInfoUser(): void {
 
 
 public checkPhoto_prof() {
-  if(this.info_teacher.photoDocente==null || this.info_teacher.photoDocente=="") {
+  if(this.info_teacher.photoDocente==null) {
   return true; }
   else return false;
 }
 
 public checkPhoto_student() {
-  if(this.info_student.photoStudent==null || this.info_student.photoStudent=="") {
+  console.log(this.info_student);
+  if(this.info_student.photoStudent==null) {
   return true; }
   else return false;
 }
