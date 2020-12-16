@@ -177,6 +177,8 @@ constructor(private teacherService:TeacherService,private sanitizer: DomSanitize
     this.teacherService.deleteCourse(name)
     .subscribe(s => {
       this.openDialog_notification_confirm("Operazione effettuata con successo!");
+      this.reload_courses();
+      this.router.navigateByUrl('/home');
     },
     err => { 
       this.openDialog_notification_confirm("Si è verificato un errore...");

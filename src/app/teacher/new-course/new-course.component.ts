@@ -35,10 +35,11 @@ export class NewCourseComponent implements OnInit {
     this.teacherService.create_course(id_owners,this.model)
     .subscribe(s => { 
         console.log(s);
-        if(s)
+        if(s) 
         this.openDialog_notification_confirm("Corso creato con successo!");
         else
         this.openDialog_notification_confirm("Si è verificato un problema...");
+        
         this.appComponent.reload_courses();
     },
     err => this.openDialog_notification_confirm("Si è verificato un errore.")
@@ -59,22 +60,6 @@ export class NewCourseComponent implements OnInit {
     this.teacherService.getAllProfessors()
     .subscribe(s => { this.all_prof = s;});
   }
-
-/*  create_course(): void {
-    let id_owners: string[] = [];
-
-    this.selected_prof.forEach(item => id_owners.push(item.id));
-
-    this.teacherService.create_course(id_owners,this.model)
-    .subscribe(s => { 
-        console.log(s);
-
-
-
-    });
-  }
-
-  */
 
   
 scelta_professori(profs: Teacher[]): void {

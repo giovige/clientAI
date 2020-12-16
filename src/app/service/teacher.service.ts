@@ -125,6 +125,12 @@ export class TeacherService {
     //return of(this.enrolled);
   }
 
+  
+  getTaskById(course_name:string,task_id: number): Observable<Task> { 
+    return this.http.get<Task>(this.API_PATH + 'courses/'+course_name+'/tasks/'+task_id);
+    //return of(this.enrolled);
+  }
+
 
   getVMS(course_name: string,team_id: number): Observable<Vm[]> {
 

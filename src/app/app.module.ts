@@ -58,6 +58,8 @@ import {MatDatepickerModule,} from '@angular/material/datepicker';
 import { LoadingDialogComponent } from './teacher/notification/loading-dialog.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ConfirmDeleteDialogComponent } from './teacher/confirm-delete-dialog/confirm-delete-dialog.component';
+import { TeacherTaskComponent } from './teacher/teacher-task/teacher-task.component';
+import { TeacherTaskManageComponent } from './teacher/teacher-task-manage/teacher-task-manage.component';
 
 @NgModule({
   declarations: [
@@ -95,6 +97,8 @@ import { ConfirmDeleteDialogComponent } from './teacher/confirm-delete-dialog/co
     MembersContComponent,
     LoadingDialogComponent,
     ConfirmDeleteDialogComponent,
+    TeacherTaskComponent,
+    TeacherTaskManageComponent,
   ],
   imports: [
     BrowserModule,

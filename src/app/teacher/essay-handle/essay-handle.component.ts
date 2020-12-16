@@ -40,8 +40,8 @@ changeImage = false;
   course_name: string;
   task_id:number;
   essay_id: number;
+  //storical Essay: array di image, storico di un elaborato
   storical_essay: Image[];
-  storical_essay2: Map<number, Image[]> = new Map<number, Image[]>();
 
 
   ngOnInit(): void {
@@ -83,6 +83,7 @@ else if(check_voto==true)//è gia stato valutato, disabilito la select
    this.show_gia_valutato = true;
  } }
 
+ //funzioni per upload immagine ( soluzione )
 change($event) {
   this.changeImage = true;
 }
@@ -98,26 +99,20 @@ this.pushSoluzione(this.course_name,this.task_id,this.essay_id,this.currentFileU
  selectFile(event) {
   this.selectedFiles = event.target.files;
 }
-/*fine roba per img*/
+/*fine funzioni per img*/
 
 
   getEssayStorical(essay_id: number, task_id: number): void {
     this.teacherService.getEssay_storical(this.course_name,task_id,essay_id)
-    .subscribe ( essay_storic=> {
-       console.log(essay_storic);
+    .subscribe ( s_essay=> {
+
       //sistemo l'immagine dei vari stati dell'essay per il download
-       essay_storic.forEach(essay=> { 
+       s_essay.forEach(essay=> { 
       let objectURL = 'data:image/png;base64,' + essay.data;
       essay.data = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-    
-    
     })
 
-       this.storical_essay=essay_storic;
-       if(this.storical_essay2.has(essay_id))
-       alert("we")
-       else 
-       this.storical_essay2.set(essay_id,essay_storic);
+       this.storical_essay=s_essay;
     });
     }
 

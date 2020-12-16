@@ -16,6 +16,7 @@ import { VmsLinkComponent } from './teacher/vms/vms-link/vms-link.component';
 import { TaskComponent } from './teacher/task/task.component';
 import { NewCourseComponent } from './teacher/new-course/new-course.component';
 import { StudentsContComponent } from './teacher/students/students-cont.component';
+import { TeacherTaskManageComponent } from './teacher/teacher-task-manage/teacher-task-manage.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'teacher/courses/:course_name/enrolled', canActivate: [AuthGuard], component: StudentsContComponent },
   { path: ':user/profile', canActivate: [AuthGuard], component: ProfileComponent },
   { path: 'teacher/courses/:course_name/new_task', canActivate: [AuthGuard], component: NewTaskComponent },
+  { path: 'teacher/courses/:course_name/task/:task_id', canActivate: [AuthGuard], component: TeacherTaskManageComponent},
   { path: 'teacher/courses/:course_name/task/:task_id/essay/:essay_id/manage_essay', canActivate: [AuthGuard], component: EssayHandleComponent},
   { path: 'teacher/courses/:course_name/update', canActivate: [AuthGuard], component: UpdateCourseComponent },
   { path: 'teacher/courses/:course_name/vms', canActivate: [AuthGuard], component: VmsComponent },

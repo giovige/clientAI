@@ -12,12 +12,11 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./task.component.css']
 })
 export class TaskComponent implements OnInit {
-  panelOpenState = false;
   course_name: string;
   tasks: Task[];
-  thumbnail: any;
-  essay_per_task  : Map<Task, Essay[]> = new Map<Task, Essay[]>();
-  students: Student[];
+
+  //essay_per_task  : Map<Task, Essay[]> = new Map<Task, Essay[]>();
+
 
   constructor(private sanitizer: DomSanitizer,private teacherService: TeacherService,private activatedRoute: ActivatedRoute) { }
 
@@ -27,28 +26,7 @@ export class TaskComponent implements OnInit {
         } )
         this.getTasks();
   } 
-  toArray(answers: object) {
-    return Object.keys(answers).map(key => answers[key])
-  }
-
-  orderingTaskbyDataScadenza() {
-  //rimuovo tutto da essay per task
-    this.essay_per_task.clear();
-    //ordino i task
-    const descending: any= this.tasks.sort((a,b) => (a > b ? -1 : 1))
-    //richiamo la getEssayByTask
-    this.getEssaysByTask(this.tasks); 
-  }
-
-  orderingTaskbyDataRilascio() {
-    //rimuovo tutto da essay per task
-    this.essay_per_task.clear();
-    //ordino i task
-    const ascending: any= this.tasks.sort((a,b) =>  (a.dataScadenza > b.dataScadenza ? 1 : -1));
-    //richiamo la getEssayByTask
-    this.getEssaysByTask(this.tasks); 
-  }
-
+ 
 
 
   getTasks(): void {
@@ -56,28 +34,23 @@ export class TaskComponent implements OnInit {
         .subscribe( s => {
           console.log(s);
           s.forEach(x => { 
-
-            //var bytes = x.description;
-            //var uints = new Uint8Array(bytes);
-            //var base64 = btoa(String.fromCharCode(null,bytes));
-           // var url = 'data:image/jpeg;base64,' + base64; // use this in <img src="..."> binding
-
            //sanitize immagine, la salvo "pulita" cosi poi devo solo visualizzarla senza fare altro
             let objectURL = 'data:image/png;base64,' + x.description;
             x.description = this.sanitizer.bypassSecurityTrustUrl(objectURL);
-        
+
           })
           this.tasks=s;
 
-          //ordino a livello temporale, in questo caso per DataRilascio
-          this.orderingTaskbyDataRilascio();
-
+          //old
           //prendo gli essays per ogni task
-          this.getEssaysByTask(this.tasks); 
+         // this.getEssaysByTask(this.tasks); 
         });
 
   }
 
+
+  /*
+    //old
   getEssaysByTask(tasks: Task[]): void {
     this.tasks.forEach(task => { 
       this.teacherService.getEssays(this.course_name,task.id)
@@ -90,6 +63,6 @@ export class TaskComponent implements OnInit {
     
     } );
 
-}  
+}  */
 
 }

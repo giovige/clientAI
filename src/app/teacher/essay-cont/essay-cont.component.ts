@@ -23,66 +23,42 @@ import { Essay } from 'src/app/essay.model';
 })
 export class EssayContComponent implements OnInit {
 
+  constructor(private teacherService: TeacherService) {}
+  
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   @ViewChild('table') table: MatTable<Element>;
-  @Input() selectedProf:Essay;
-
-  @Input() course_name:string;
-  @Input() task_id:string;
-
-
-
-
-  columnsToDisplay: string[] = ['id','id_studente','nome_studente','stato','timestamp','voto','storico'];
-  profControl = new FormControl();
-  filteredProf: Observable<Essay[]>;
- // private _essay_per_task;
-  private _all_prof: Essay[];
-
-/*filtering*/
-  filterForm = new FormGroup({
-    filtering_state: new FormControl()
-});
-
-
-
-
-  @Input() set essay_per_task( all_prof: Essay[]){
-    this._all_prof = all_prof;
-    //aggiungo nome e cognome per visualizzarli ( dal server arriva solo idStudente, lo aggiungo con un altra chiamata al service), a partire dall'id
-    this._all_prof.forEach(student => {
-      this.teacherService.getStudentById(student.idStudente)
-      .subscribe( s=> student.nome_studente=s.name+" "+s.firstName)
-      });
-    this.dataSource = new MatTableDataSource<Essay>(this._all_prof);
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    //this.selectedProf=null;
-
-  }
-
-
-
-  constructor(private teacherService: TeacherService) {
-
-  }
-
 
   dataSource = new MatTableDataSource<Essay>();
+  //colonne tabella
+  columnsToDisplay: string[] = ['id','id_studente','nome_studente','stato','timestamp','voto','storico'];
 
-  
-  selection = new SelectionModel<Essay>(true, []);
+  //parametri ricevuti
+  @Input() course_name:string;
+  @Input() task_id:string
+
+
+  @Input() set essay_per_task( all_essays: Essay[]){
+
+    //aggiungo nome e cognome per visualizzarli ( dal server arriva solo idStudente, aggiungo Nome + Cognome con un altra chiamata al service), a partire dall'id
+    all_essays.forEach(essay => {
+      this.teacherService.getStudentById(essay.idStudente)
+      .subscribe( stud=> essay.nome_studente=stud.name+" "+stud.firstName)
+      });
+    this.dataSource = new MatTableDataSource<Essay>(all_essays);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+
+  }
+
+
+/*filtering*/
+filterForm = new FormGroup({
+  filtering_state: new FormControl()
+});
   
   
   ngOnInit() { 
-    this.filteredProf = this.profControl.valueChanges
-    .pipe(
-      startWith(''), 
-      map(teacher => teacher ? this._filteredProf(teacher) : this._all_prof.slice())
-  );
-
-
 /*filtering per stato */
   this.dataSource.filterPredicate = (data: Essay, filter: string) => {
     if(filter=='all') return true;
@@ -91,51 +67,12 @@ export class EssayContComponent implements OnInit {
 
   }
 
+
   applyFilter() {
     this.dataSource.filter = this.filtering_state;
   }
 
-
-
-
-  selezione_profs() {
-    let list: Essay[] = [];
-    this.selection.selected.forEach(item => list.push(item));
-    this.selection = new SelectionModel<Essay>(true, []);
-
-  }
-
-
-  private _filteredProf(value: string): Essay[] {
-    const filterValue = value.toString().toLowerCase();
-    //console.log(value);
-    //console.log(this.students);
-    return this._all_prof.filter(x => x.idStudente.toString().toLowerCase().indexOf(filterValue) === 0 || x.nome_studente.toString().toLowerCase().indexOf(filterValue) === 0); 
-  }
-  
-  
-  
-
-
-
-
-
-  /** Whether the number of selected elements matches the total number of rows. */
-isAllSelected() {
-  const numSelected = this.selection.selected.length;
-  const numRows = this._all_prof.length;
-  return numSelected == numRows;
-}
-
-/** Selects all rows if they are not all selected; otherwise clear selection. */
-masterToggle() {
-  this.isAllSelected() ?
-      this.selection.clear() :
-      this._all_prof.forEach(row => this.selection.select(row));
-}
-
-
-
+//ritorna il valore del filtro
 get filtering_state() { 
   return this.filterForm.get('filtering_state').value;
 }

@@ -12,9 +12,9 @@
 
      <mat-list>
 
-        <div *ngFor="let essay of storical_essay2 | keyvalue ">
+        <div *ngFor="let essay_storic of storical_essay">
               
-          <mat-list-item *ngFor="let essay_storic of toArray(essay.value)">
+          <mat-list-item>
             <mat-icon mat-list-icon style="font-size: 35px;">image</mat-icon>
             <div mat-line>Nome: {{essay_storic.filename}} </div>
             <div mat-line>Creato da: {{essay_storic.idCreator}}</div>
