@@ -19,8 +19,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { Token } from 'src/app/token.model';
 import { StudentRequest } from 'src/app/student-request.model';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { NotificationComponent } from 'src/app/teacher/notification/notification.component';
-import { LoadingDialogComponent } from 'src/app/teacher/notification/loading-dialog.component';
+import { NotificationComponent } from 'src/app/notification/notification.component';
+import { LoadingDialogComponent } from 'src/app/notification/loading-dialog.component';
 
 
 
@@ -31,7 +31,7 @@ import { LoadingDialogComponent } from 'src/app/teacher/notification/loading-dia
 })
 export class GroupsContComponent implements OnInit {
   
-  GroupPresent: boolean;    //@@@@@@@@@@@ selezionatore della vista opportuna
+  GroupPresent: boolean;    //selezionatore della vista opportuna
   //course_id: string;
   course_name: string;
   inAteamObs: Observable<any>;
@@ -167,87 +167,8 @@ export class GroupsContComponent implements OnInit {
   }
 
 
-/* --------------------------------------------------------------------------------- 
-this.studentService.getTeamRequests(this.studentID, this.course_name).pipe(
-  concatMap( tkn => {
-    if(Object.keys(tkn).length !== 0){
-      console.log('trovato token');
-      console.log(tkn);
-      this.studentService.getTeamMembers(tkn.teamId);
-    }else{
-      console.log('niente token');
-    }
-  })//parentesi concatMap
-  )//parentesi pipe
-  .subscribe( s => {
-    console.log('dopppo');
-    console.log(s);
 
-  });
-
-
-
-
-
-
-
-
-  this.studentService.getTeamRequests(this.studentID, this.course_name).subscribe(
-    tkn => {
-      if(Object.keys(tkn).length !== 0){
-        console.log('trovato token');
-        console.log(tkn);
-        
-        this.studentService.getTeamMembers(tkn.teamId).subscribe(
-        s => {
-          this.requestMap.set(tkn, s);
-          console.log('mappa token-studenti');
-          console.log(this.requestMap);
-        });
-      }else{
-        console.log('niente token');
-      }
-      
-      
-
-      //qui per ogni teamId devo trovare i partecipanti e il nome
-    },
-    err => {
-      console.log('nessuna richiesta gruppo!');
-    }
-  );
-
-
-
-
-
-
-  this.studentService.getTeamRequests(this.studentID, this.course_name).subscribe(
-              tkn => {
-                if(Object.keys(tkn).length !== 0){
-                  console.log('trovato token');
-                  console.log(tkn);
-                  
-                  from(tkn).forEach( (t: Token) => {
-                    console.log(t.id);
-                    console.log(t.expiryDate);
-                    console.log('CICLOOOOO');
-                  });
-                  this.studentService.getTeamMembers(tkn.teamId).subscribe(
-                  s => {
-                    this.requestMap.set(tkn, s);
-                    console.log('mappa token-studenti');
-                    console.log(this.requestMap);
-                  });
-                }else{
-                  console.log('niente token');
-                }
- --------------------------------------------------------------------------------- */
-  
-
-
-
-//@@@@@@@@@@@@@@@@@@@@@@@@@@@@ parte di tabella per registrazione gruppo @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//parte tabella per registrazione gruppo
 
 selection = new SelectionModel<Student>(true, []);
 
@@ -272,7 +193,7 @@ studentColumns: string[] = ['select','id', 'serial', 'name', 'firstName' ];
 
 
 
-sendTeamRequest() {     //@@@@@@invia richiesta
+sendTeamRequest() {     
   const val = this.form.value;
   if(!this.form.invalid) {
     let membersList: string[] = [];
@@ -304,7 +225,7 @@ accept(tok :string,teamId: string) {
     s=>
      {
       this.openDialog_notification_confirm("La proposta per il team "+teamId+" è stata accettata!");
-      //devo aggiornare il component
+      //aggiornare il component
       this.ngOnInit();
      },
      err => {
@@ -317,7 +238,7 @@ reject(tok :string,teamId: string) {
      s=>
     {
       this.openDialog_notification_confirm("La proposta per il team "+teamId+" è stata rifiutata!");
-            //devo aggiornare il component
+            //aggiornare il component
       this.ngOnInit();
 
      },
@@ -327,40 +248,12 @@ reject(tok :string,teamId: string) {
 }
 
 
-//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
 groupColumns: string[] = ['select','name', 'firstName'];
 
 
 
-//@@@@@@@@@@@@@@@@@@@__________FUNZIONI per service___________@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-/* 
-//TODO
-getTeam(id: string, c: string): void{
-  this.studentService.getStudentTeamByCourse(id, c)
-  .subscribe( g => {
-    console.log('getTeam()');
-    this.currentTeam = g;
-    this.team_id = g.id;
-    console.log(this.team_id);
-
-    if(this.team_id!==null){
-      this.alreadyInGroup=true;
-      console.log(this.currentTeam);
-      console.log(this.team_id);
-      this.alreadyInGroup = true;
-      this.getMembers(this.team_id);
-    }else{
-      this.alreadyInGroup=false;
-    }
-
-    
-  });
-} */
-
-//TODO
 getMembers(teamId:number): void {
   this.studentService.getTeamMembers(teamId)
   .subscribe( s => {
@@ -371,22 +264,6 @@ getMembers(teamId:number): void {
 }
 
 
-/* 
-//TODO
-teamExist(id: string, c: string): void{
-  this.studentService.getStudentTeamByCourse(id, c)
-  .subscribe( g => {
-    console.log('>>>>>>>>teamExist');
-    this.team_id = g.id;
-    console.log(this.team_id);
-    if(this.team_id!==undefined){
-      this.alreadyInGroup=true;
-    }
-    console.log(this.alreadyInGroup);
-  });
-}
-
- */
 
 
 toArray(answers: object) {

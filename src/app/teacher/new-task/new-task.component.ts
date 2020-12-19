@@ -5,7 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import {Router} from '@angular/router';
 import { Task } from 'src/app/task.model';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { NotificationComponent } from 'src/app/teacher/notification/notification.component';
+import { NotificationComponent } from 'src/app/notification/notification.component';
 
 @Component({
   selector: 'app-new-task',

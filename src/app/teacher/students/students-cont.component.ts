@@ -2,7 +2,7 @@ import { Component, ViewChild, ElementRef, OnInit, Output, Input, AfterViewInit 
 import {Student} from 'src/app/student.model'
 import { ActivatedRoute } from '@angular/router';
 import { TeacherService } from '../../service/teacher.service';
-import { NotificationComponent } from '../notification/notification.component';
+import { NotificationComponent } from '../../notification/notification.component';
 import { MatDialog } from '@angular/material/dialog';
 
 

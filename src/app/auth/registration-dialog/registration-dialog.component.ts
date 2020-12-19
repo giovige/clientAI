@@ -4,8 +4,8 @@ import { AuthService } from '../auth.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { User } from '../../user.model';
 import { User_registration } from '../../user_registration.model';
-import { NotificationComponent } from 'src/app/teacher/notification/notification.component';
-import { LoadingDialogComponent } from 'src/app/teacher/notification/loading-dialog.component';
+import { NotificationComponent } from 'src/app/notification/notification.component';
+import { LoadingDialogComponent } from 'src/app/notification/loading-dialog.component';
 import { validateHorizontalPosition } from '@angular/cdk/overlay';
 
 @Component({

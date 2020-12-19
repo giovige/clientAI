@@ -46,7 +46,7 @@ import { AuthService } from 'src/app/auth/auth.service';
     @Input() id: string;
     @Input() course_name: string;
     @Input() set enrolledStudents( enrolledStudents: Student[]){
-       //tolgo lo studente loggato loggato dalla lista, è ovvio
+       //tolgo lo studente loggato dalla lista, è ovvio
        this._enrolledStudents = enrolledStudents.filter ( stud => stud.id != this.authService.getUserId());
 
       this.dataSource = new MatTableDataSource<Student>(this._enrolledStudents);

@@ -4,7 +4,7 @@ import { Teacher } from 'src/app/teacher.model';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { AppComponent } from 'src/app/app.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { NotificationComponent } from 'src/app/teacher/notification/notification.component';
+import { NotificationComponent } from 'src/app/notification/notification.component';
 
 
 @Component({

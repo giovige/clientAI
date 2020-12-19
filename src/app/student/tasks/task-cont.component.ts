@@ -1,12 +1,9 @@
-import { DataSource } from '@angular/cdk/table';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NotificationComponent } from 'src/app/teacher/notification/notification.component';
+import { NotificationComponent } from 'src/app/notification/notification.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { endWith } from 'rxjs/operators';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Essay } from 'src/app/essay.model';
 import { Image } from 'src/app/image.model';
@@ -80,7 +77,6 @@ clickedTask(id: number):void {
   this.essay = null;
   this.hasStorical=false;
 
-  //TODO: aggiungere dialog con viualizzazione img Task
   
   this.studentService.getEssayIfExists(this.coursename, id, this.studId).subscribe(
     res => {
@@ -126,7 +122,6 @@ clickedTask(id: number):void {
           let objectURL = 'data:image/png;base64,' + img.data;
           img.data = this.sanitizer.bypassSecurityTrustUrl(objectURL);
         });
-        //console.log(this.essayImages);
       }
     );
   }
@@ -176,18 +171,6 @@ addEssay():void {
   }
   
 }  
-
-
-
-
-
-
-
-
- 
-
-
-
 
 
 

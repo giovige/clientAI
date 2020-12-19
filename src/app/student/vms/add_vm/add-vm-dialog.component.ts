@@ -4,7 +4,7 @@ import { StudentService } from 'src/app/service/student.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Vm } from 'src/app/vm.model';
 import { AuthService } from 'src/app/auth/auth.service';
-import { NotificationComponent } from 'src/app/teacher/notification/notification.component';
+import { NotificationComponent } from 'src/app/notification/notification.component';
 
 @Component({
   selector: 'app-add-vm-dialog',
@@ -81,25 +81,7 @@ export class AddVmDialogComponent implements OnInit {
       return 'VM image required';
     }
 }
-/* 
 
-  addVM(): void {         //PostMapping("/{id}/teams/{teamId}/vm")
-    console.log('addVM');
-    const val = this.form.value;
-    
-    if(!this.form.invalid) {
-      console.log('tutto okk');
-      let vmtoAdd: Vm;
-      vmtoAdd=val;
-      this.studentService.createNewVM(this.studId, this.teamId, vmtoAdd).subscribe(
-        ok => {
-          this.dialogRef.close();
-        }
-      );
-    }
-  }
-
- */
 
     change($event) {
       this.changeImage = true;

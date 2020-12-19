@@ -1,18 +1,6 @@
 import { Component, ViewChild, ElementRef, OnInit, Output, Input, AfterViewInit, OnDestroy } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
-import { SelectControlValueAccessor } from '@angular/forms';
 import { MatSidenav } from '@angular/material/sidenav';
-import {Student} from 'src/app/student.model'
-import {MatTableDataSource} from '@angular/material/table';
-import {SelectionModel, DataSource} from '@angular/cdk/collections';
-import {FormControl} from '@angular/forms';
 import {Observable, Subscription} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import { strict } from 'assert';
-import {MatAutocompleteModule, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete'; 
-import {MatTable} from '@angular/material/table';
-import {MatSort} from '@angular/material/sort';
-import {MatPaginator} from '@angular/material/paginator';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { LoginDialogComponent } from './auth/login-dialog/login-dialog.component';
 import { AuthService } from './auth/auth.service';
@@ -21,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TeacherService } from './service/teacher.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { RegistrationDialogComponent } from './auth/registration-dialog/registration-dialog.component';
-import { NotificationComponent } from './teacher/notification/notification.component';
+import { NotificationComponent } from './notification/notification.component';
 import { ConfirmDeleteDialogComponent } from './teacher/confirm-delete-dialog/confirm-delete-dialog.component';
 
 
@@ -266,35 +254,6 @@ constructor(private teacherService:TeacherService,private sanitizer: DomSanitize
   }
   
   
-  /*
-  clicked_course(course_name:string) {
-    if(course_name=='new_course') {
-    this.course_name="Nuovo corso"; 
-    this.show_bar=false; }
-    else if(course_name=='home') {
-    this.course_name="Home";
-    this.show_bar=false; }
-    else if(course_name=='profile') {
-    this.course_name="Profile";
-    this.show_bar=false; }
-    else {
-    this.course_name=course_name;
-    this.show_bar=true; }
-    //mostro la navbar Studenti,Consegne etc
-    
-    if (this.show_bar) {
-    this.menuAvailable = new Observable(observer=>observer.next(this.show_bar));
-    this.menuAvailable.subscribe();
-  } else {
-
-    this.menuAvailable = new Observable(observer=>observer.next(this.show_bar));
-    this.menuAvailable.subscribe();   
-}
-    this.menuAvailable = new Observable(observer=>observer.next(this.show_bar));
-  
-  }
-  */
-  
   clicked_delete(name:string) : void {
     this.openDialog_confirm_delete_course("Sei sicuro di voler eliminare il corso ''"+name+"''?",name);
     }
@@ -328,7 +287,6 @@ constructor(private teacherService:TeacherService,private sanitizer: DomSanitize
 
   
   groupClicked(course: string): void{
-    //alert('AAAAAAAAAAAAAAAAAAHHHHH');
     this.studentService.getStudentTeamByCourse(this.id, course)
     .subscribe( g => {
       console.log('>>>>>>>>teamExist');

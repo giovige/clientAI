@@ -9,7 +9,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import {FormControl, FormGroup} from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { NotificationComponent } from 'src/app/teacher/notification/notification.component';
+import { NotificationComponent } from 'src/app/notification/notification.component';
 
 
 @Component({

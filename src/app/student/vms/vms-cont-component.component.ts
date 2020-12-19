@@ -30,7 +30,6 @@ export class VmsContComponentComponent implements OnInit {
   constructor(public dialog: MatDialog, private activatedRoute: ActivatedRoute, private studentService: StudentService, private authService: AuthService,private sanitizer: DomSanitizer) {
       this.dataSource= [];
             
-      //console.log('constructor  ');
    }
 
 
@@ -48,7 +47,6 @@ export class VmsContComponentComponent implements OnInit {
          this.getTeamVms(this.studentID, this.teamId);
       });
     });
-    //console.log('ngOnInit  ');
     
   }
 
@@ -109,7 +107,6 @@ export class VmsContComponentComponent implements OnInit {
 
 
     getTeamVms(stud_id: string, teamId: number): void {
-    //GetMapping("/{id}/teams/{teamId}/vms")                getVm from team
       this.studentService.getStudentVMsByCourse(stud_id,teamId).subscribe( vms => {
         vms.forEach( vm => {
           let objectURL = 'data:image/png;base64,' + vm.screenVm;
@@ -127,7 +124,6 @@ export class VmsContComponentComponent implements OnInit {
 
 
     changeVMstatus(vmId: number): void {
-      //PutMapping("/{id}/teams/{teamid}/vms/{vmId}/switch")
       this.studentService.changeStatusToVM(this.studentID, this.teamId, vmId).subscribe( end => {
         this.getTeamVms(this.studentID, this.teamId);
       });
@@ -135,7 +131,6 @@ export class VmsContComponentComponent implements OnInit {
 
     
     deleteVM(vmId: number): void {
-      //DeleteMapping("/{id}/teams/{teamid}/vms/{vmId}")
       this.studentService.deleteVM(this.studentID, this.teamId, vmId).subscribe( end => {
         this.getTeamVms(this.studentID, this.teamId);
       });

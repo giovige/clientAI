@@ -6,7 +6,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { Vm } from 'src/app/vm.model';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Student } from 'src/app/student.model';
-import { NotificationComponent } from 'src/app/teacher/notification/notification.component';
+import { NotificationComponent } from 'src/app/notification/notification.component';
 
 @Component({
   selector: 'app-edit-owners',
@@ -71,7 +71,7 @@ getTeamMembers(): void {
     }
         ,
        err =>
-        console.log('dsjkhfvgdkjhvsdjhb')
+        console.log('errore edit_Owners')
     )
 
 

@@ -7,7 +7,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { GroupsContComponent} from './student/groups/groups-cont.component';
 import { TaskContComponent } from './student/tasks/task-cont.component';
 import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './teacher/profile/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 import { NewTaskComponent } from './teacher/new-task/new-task.component';
 import { EssayHandleComponent } from './teacher/essay-handle/essay-handle.component';
 import { UpdateCourseComponent } from './teacher/update-course/update-course.component';

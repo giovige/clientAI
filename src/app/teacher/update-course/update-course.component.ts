@@ -5,7 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import {Course} from 'src/app/course.model';
 import {Teacher} from 'src/app/teacher.model';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { NotificationComponent } from 'src/app/teacher/notification/notification.component';
+import { NotificationComponent } from 'src/app/notification/notification.component';
 
 @Component({
   selector: 'app-update-course',

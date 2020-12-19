@@ -3,7 +3,6 @@
   <span class="example-fill-remaining-space"></span>
   
   <div class="example-label">
-    <!-- <button class="LogButton" mat-button (click)="openDialog()"> Login </button> -->
     <button *ngIf="!authService.loggedin" class="LogButton" mat-button routerLink="/home" routerLinkActive="active" [queryParams]="{doLogin: true}"> Login</button>
     <button *ngIf="!authService.loggedin" class="LogButton" mat-button routerLink="/home" routerLinkActive="active" [queryParams]="{doRegistration: true}"> Registration</button>
 

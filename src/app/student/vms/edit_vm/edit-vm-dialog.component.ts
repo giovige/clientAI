@@ -4,7 +4,7 @@ import { StudentService } from 'src/app/service/student.service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { Vm } from 'src/app/vm.model';
 import { AuthService } from 'src/app/auth/auth.service';
-import { NotificationComponent } from 'src/app/teacher/notification/notification.component';
+import { NotificationComponent } from 'src/app/notification/notification.component';
 
 @Component({
   selector: 'app-edit-vm-dialog',
