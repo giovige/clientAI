@@ -220,30 +220,36 @@ sendTeamRequest() {
 
 
 accept(tok :string,teamId: string) {
-
+  this.openDialog_loading("Rimani in attesa.");
   this.studentService.acceptRequest(tok).subscribe( 
     s=>
      {
+       this.dialog.closeAll();
       this.openDialog_notification_confirm("La proposta per il team "+teamId+" è stata accettata!");
       //aggiornare il component
       this.ngOnInit();
      },
      err => {
+       this.dialog.closeAll();
      this.openDialog_notification_confirm("Impossibile accettare la richiesta..."); }
      );
 }
 
 reject(tok :string,teamId: string) {
+  this.openDialog_loading("Rimani in attesa.");
   this.studentService.rejectRequest(tok).subscribe(
      s=>
     {
+      this.dialog.closeAll();
       this.openDialog_notification_confirm("La proposta per il team "+teamId+" è stata rifiutata!");
             //aggiornare il component
       this.ngOnInit();
 
      },
-     err =>
-     this.openDialog_notification_confirm("Si è verificato un errore...")     
+     err =>{
+      this.dialog.closeAll();
+      this.openDialog_notification_confirm("Si è verificato un errore..."); 
+     }
      );
 }
 
