@@ -1,21 +1,18 @@
-<!-- <h2 mat-dialog-title>Avviso</h2>
-<mat-dialog-content class="mat-login">
-{{data}}
-<div><button mat-raised-button style="margin-top: 20px;"  mat-dialog-close>Chiudi</button>
-</div>
-</mat-dialog-content>
- -->
-<div mat-dialog-container>
+
+  <div mat-dialog-container>
     <mat-toolbar color="primary" class="mat-elevation-z2" style="text-align: center;">
       <mat-card-header>Avviso</mat-card-header>
     </mat-toolbar>
-    <br>
-    <div class="info" >
-      <p>{{data}}</p>
-    </div> <br> <br>
-    <div style="padding: 5px;float:right">
+
+<mat-dialog-content class="mat-login">
+  <div class="info" >
+    <p>{{data}}</p>
+  </div> <br>
+  </mat-dialog-content>
+
+      <mat-dialog-actions align="end">
         <button mat-button color="accent" mat-dialog-close>Chiudi</button>
-      
-    </div>
-    
-  </div>
+      </mat-dialog-actions>
+      </div>
+
+
