@@ -1,44 +1,68 @@
+
 <div class="container"><div class="form-group">
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <h1>Modifica corso : {{course_name}}</h1>
+  <mat-card>
+    <mat-card-title>Modifica corso: {{course_name}}</mat-card-title>
+    <mat-card-subtitle>Inserisci le modifiche che vuoi apportare. Non è possiible modificare il nome del corso</mat-card-subtitle>
+    <br>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <section>
         
-    <div class="form-field">
-        <label class="text-white">Nome corso</label><br>
-        <input type="text" class="form-control" id="name"
-        required formControlName="nome_corso" readonly>
-    </div>
-      <div class="form-field">
-        <label class="text-white">Min</label><br>
-        <input class="form-control" formControlName="min">
-      </div>
-      <div class="form-field">
-        <label class="text-white">Max</label><br>
-        <input class="form-control" formControlName="max">
-      </div>
-      <div class="form-field">
-        <label class="text-white">Modello VM CPU</label><br>
-        <input class="form-control" formControlName="cpu">
-      </div>     
-       <div class="form-field">
-        <label class="text-white">Modello VM Gb Disk</label><br>
-        <input class="form-control" formControlName="gbdisk">
-      </div>   
-         <div class="form-field">
-        <label class="text-white">Modello VM Gb Ram</label><br>
-        <input class="form-control" formControlName="gbram">
-      </div>
-      <div class="form-field">
-        <label class="checkbox-white">Enabled</label><br>
-        <input type="checkbox" class="form-control" id="enabled"
-        required formControlName="enabled">
-      </div>
-      <app-teacher-cont (addEmitter_professors)="scelta_professori($event)" [all_prof]="all_prof" ></app-teacher-cont>
-
-   
-    <br/>
-    <!-- <button type="submit">Submit</button> 
-    Lo sto commentando perche la submit c'è gia in app-teacher-cont-->
+            
+        <mat-form-field appearance="fill">
+            <mat-label>Nome corso</mat-label>
+            <input matInput formControlName="nome_corso"readonly>
+            <span matSuffix></span>
+        </mat-form-field>
+        <br>
+  
+        <mat-form-field appearance="fill">
+          <mat-label>Numero minimo componenti gruppo</mat-label>
+          <input matInput type="number" placeholder="Ex. 1" formControlName="min">
+          <span matSuffix></span>
+      </mat-form-field>
+      <br>
+  
+      <mat-form-field appearance="fill">
+        <mat-label>Numero massimo componenti gruppo</mat-label>
+        <input matInput type="number" placeholder="Ex. 10" formControlName="max">
+        <span matSuffix></span>
+    </mat-form-field>
+    <br>
+  
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Modello Virtual Machine CPU</mat-label>
+      <input matInput type="number"  placeholder="Ex. 1" formControlName="cpu">
+      <span matSuffix></span>
+  </mat-form-field>
+  <br>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Modello Virtual Machine GB Disk</mat-label>
+    <input matInput type="number" placeholder="Ex. 100"  formControlName="gbdisk">
+    <span matSuffix></span>
+  </mat-form-field>
+  <br>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Modello Virtual Machine GB Ram</mat-label>
+    <input matInput type="number"  placeholder="Ex. 2" formControlName="gbram">
+    <span matSuffix></span>
+  </mat-form-field>
+  <br>
+  
+  <div style="text-align: center;">
+  <h2 style="font-weight:bold;text-align:center">Abilita corso:</h2>
+  <mat-checkbox class="mat-checkbox-enabled" formControlName="enabled"></mat-checkbox>
+  </div>
+        <br>
+  
+          <h2 style="font-weight:bold;text-align:center">Seleziona altri docenti:</h2>
+          <br>
+        <app-teacher-cont (addEmitter_professors)="scelta_professori($event)" [all_prof]="all_prof" ></app-teacher-cont>
+         <br>            
+        <br>    
+    </section>
   </form>
-  <br/>
-
-</div></div>
+  </mat-card-content></mat-card></div></div>
