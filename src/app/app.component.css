@@ -30,17 +30,19 @@
     }
 
     mat-sidenav {
-      min-width: 10% ;
-      max-width: max-content;
-      border-right-color: #3d5ef1;
+     /* min-width: 10% ;
+      max-width: max-content; */
+      width: 15%;
+      border-right-color: #3d5ef1; 
+      
     }
 
 
     mat-sidenav-content {
       background: #e7e0e0b0;
       /* scrivo qui dimensione content */
-
-    }
+        }
+    
 
     .example-fill-remaining-space {
       /* This fills the remaining space, by using flexbox. 

@@ -28,24 +28,26 @@
       <br>
 <!--disabled, info-->
 <h2>Specchietto riassuntivo</h2>
-      <mat-form-field appearance="fill">
+
+<mat-form-field appearance="fill">
+  <mat-label>Stato team</mat-label>
+  <input matInput type="text" formControlName="status" readonly >
+</mat-form-field>
+<br>
+      <mat-form-field  appearance="fill">
         <mat-label>GB Disk usati</mat-label>
         <input matInput type="number" formControlName="gbdiskusati"  readonly>
         <span matSuffix>GB</span>
       </mat-form-field>
       <br>
 
-      <mat-form-field appearance="fill">
+      <mat-form-field  appearance="fill">
         <mat-label>Vm Accese</mat-label>
         <input matInput type="number" formControlName="vmaccese"  readonly>
         <span matSuffix>VM</span>
       </mat-form-field>
       <br>
-      <mat-form-field appearance="fill">
-        <mat-label>Stato</mat-label>
-        <input matInput type="text" formControlName="status" readonly >
-      </mat-form-field>
-      <br>
+
       <mat-form-field appearance="fill">
         <mat-label>VCPU Usate</mat-label>
         <input matInput type="number" formControlName="vcpuusate" readonly>
@@ -58,16 +60,14 @@
         <span matSuffix>VCPU</span>
       </mat-form-field>
 
-
-
-
-
-        <br>
-        <br>
-        <button mat-raised-button color="primary" (click)="onSubmit()">Conferma</button>
-        <button mat-raised-button style="margin-left: 20px;" color="warn" mat-dialog-close>Annulla</button>
-        <br>            
-        <br>    
     </section>
   </form>
-</mat-dialog-content>
+
+  </mat-dialog-content>
+
+      <mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" (click)="onSubmit()">Conferma</button>
+        <button mat-raised-button style="margin-left: 20px;" color="warn" mat-dialog-close>Annulla</button> 
+      </mat-dialog-actions>
+
+
