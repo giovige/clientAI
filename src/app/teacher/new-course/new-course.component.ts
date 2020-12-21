@@ -5,6 +5,7 @@ import { TeacherService } from 'src/app/service/teacher.service';
 import { AppComponent } from 'src/app/app.component';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { NotificationComponent } from 'src/app/notification/notification.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class NewCourseComponent implements OnInit {
   selected_prof: Teacher[];
 
 
-  constructor(private dialog: MatDialog,private teacherService:TeacherService, private appComponent: AppComponent) { 
+  constructor(private dialog: MatDialog,private teacherService:TeacherService, private appComponent: AppComponent, public router: Router) { 
     this.all_prof=[];
   }
 
@@ -35,8 +36,10 @@ export class NewCourseComponent implements OnInit {
     this.teacherService.create_course(id_owners,this.model)
     .subscribe(s => { 
         console.log(s);
-        if(s) 
-        this.openDialog_notification_confirm("Corso creato con successo!");
+        if(s) {
+          this.openDialog_notification_confirm("Corso creato con successo!");
+          this.router.navigateByUrl("/teacher/courses/"+this.model.name+"/riepilogo-teacher");
+        }
         else
         this.openDialog_notification_confirm("Si è verificato un problema...");
         

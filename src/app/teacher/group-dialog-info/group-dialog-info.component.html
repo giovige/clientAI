@@ -1,11 +1,10 @@
 
-  <p mat-dialog-title><mat-icon>edit</mat-icon>&nbsp;Modifica VM</p>
-
+  <h1 mat-dialog-title><mat-icon>edit</mat-icon>&nbsp;Configurazione limiti utilizzo risorse</h1>
+  <h2>Team: {{data.team_selected.name}} </h2>
 <mat-dialog-content class="mat-login">
     <form [formGroup]="form">
     <section>
-      <h1>Configurazione limiti utilizzo risorse</h1>
-      <h2>{{data.team_selected.name}}</h2>
+      
           
       <mat-form-field appearance="fill">
           <mat-label>GB Ram totali</mat-label>

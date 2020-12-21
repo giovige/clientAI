@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TeacherService } from 'src/app/service/teacher.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import {Course} from 'src/app/course.model';
@@ -20,7 +20,7 @@ export class UpdateCourseComponent implements OnInit {
   docentiCorso: Teacher[];
   selected_prof: Teacher[];
 
-  constructor(private teacherService: TeacherService,private activatedRoute: ActivatedRoute,private dialog: MatDialog) { 
+  constructor(private teacherService: TeacherService,private activatedRoute: ActivatedRoute,private dialog: MatDialog, public router: Router) { 
     this.all_prof=[];
     this.docentiCorso=[];
     this.activatedRoute.params.subscribe(p => {
@@ -93,8 +93,10 @@ export class UpdateCourseComponent implements OnInit {
     this.teacherService.updateCourse(this.nome_corso,course_updated,ids)
     .subscribe(s => {
       console.log(s);
-      if(s)
-      this.openDialog_notification_confirm("Corso aggiornato!");
+      if(s){
+        this.openDialog_notification_confirm("Corso aggiornato!");
+        this.router.navigateByUrl("/teacher/courses/"+this.course_name+"/riepilogo-teacher");
+      }
       else
       this.openDialog_notification_confirm("Si è verificato un problema..."); },
     err =>this.openDialog_notification_confirm("Si è verificato un errore"));   

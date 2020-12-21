@@ -18,19 +18,17 @@
       </mat-autocomplete>
       
       </mat-form-field>
-      <button class="addButton" mat-button (click)="addSelected(); addField.value=''" >Iscrivi</button>
+      <button mat-raised-button class="addButton" (click)="addSelected(); addField.value=''" color="primary" >Iscrivi</button>
     </section>
 
     <div class="form-field">
       <label class="text-white">Carica ed iscrivi da file CSV</label><br>
       <input type="file" id="customFile" formControlName="testo" (change)="selectFile($event)">
-      <button type="addButton" mat-button (click)="onSubmit_csv()">Carica</button>
+      <button mat-raised-button (click)="onSubmit_csv()" color="primary">Carica</button>
     </div>  
     </form>
   </mat-card-content>
   </mat-card>
-
-
  <!--elenco studenti iscritti al corso- mat table-->
   <mat-card>
     <mat-card-title>Elenco studenti iscritti al corso: {{course_name}}</mat-card-title>

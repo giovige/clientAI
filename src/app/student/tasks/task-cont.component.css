@@ -9,14 +9,14 @@
     display: flex;  /*   flex o table */
   }
 
-  mat-card{
+  mat-card.example-card{
     float: left;
     width: 14%;
     min-width: 200px;
   }
 
   
-  mat-card:hover{
+  mat-card.example-card:hover{
     -webkit-transform: scale(1.05);
     -ms-transform: scale(1.05);
     transform: scale(1.05);
@@ -123,6 +123,9 @@ aside{
 
 
 
+.container{
+  padding: 6px;
+}
 
   /*@@@@@@@@@@@@@@@@@@@*/
 

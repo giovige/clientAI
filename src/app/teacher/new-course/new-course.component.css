@@ -1,2 +1,9 @@
 @import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
 
+.container{
+    padding: 6px;
+  }
+
+  mat-card{
+    margin-bottom: 6px;
+  }

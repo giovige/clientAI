@@ -70,8 +70,32 @@
     .mat-stroked-button.mat-success {
     color: #155724;
     }
-
-
-
-    
     */
+
+  .profile_img {
+    padding: 6px;
+    border-radius: 10%;
+  }
+
+  mat-divider {
+    margin: 2px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .nav-title{
+    text-decoration: none;
+    color: black;
+  }
+
+  .nav-username{
+    font-weight: bolder;
+  }
+
+  .container{
+    padding: 6px;
+  }
+
+  mat-card{
+    margin-bottom: 6px;
+  }

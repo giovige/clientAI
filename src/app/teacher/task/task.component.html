@@ -1,7 +1,8 @@
+<div class="container">
 <!--Bottone per: crea nuovo task -->
-       <button class="bottoni_task" [routerLink]="['/teacher/courses/', course_name,'new_task']" mat-raised-button color="primary">+ Crea nuova consegna</button>
 <!--Card contentente la lista delle consegne, nella mat-table ( in app-teacher-task )-->
        <mat-card>
+        <button class="bottoni_task" [routerLink]="['/teacher/courses/', course_name,'new_task']" mat-raised-button color="primary">+ Crea nuova consegna</button>
         <mat-card-title>
          Lista delle consegne
         </mat-card-title>
@@ -9,12 +10,10 @@
 Puoi ordinare le consegne per data di scadenza o per data di rilascio. Per vedere gli elaborati degli studenti clicca sulla consegna associata.
     </mat-card-subtitle>
      <mat-card-content>
-<app-teacher-task [course_name]="course_name"  [tasks]="tasks"></app-teacher-task>
-
-
+        <app-teacher-task [course_name]="course_name"  [tasks]="tasks"></app-teacher-task>
      </mat-card-content>
  </mat-card>  
-
+</div>
 
 
 <!--Old Version-->

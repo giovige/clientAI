@@ -17,6 +17,8 @@ import { TaskComponent } from './teacher/task/task.component';
 import { NewCourseComponent } from './teacher/new-course/new-course.component';
 import { StudentsContComponent } from './teacher/students/students-cont.component';
 import { TeacherTaskManageComponent } from './teacher/teacher-task-manage/teacher-task-manage.component';
+import { RiepilogoTeacherComponent } from './teacher/riepilogo-teacher/riepilogo-teacher.component';
+import { RiepilogoStudentComponent } from './student/riepilogo-student/riepilogo-student.component';
 
 
 const routes: Routes = [
@@ -25,6 +27,7 @@ const routes: Routes = [
   { path: 'teacher/courses/:course_name/enrolled', canActivate: [AuthGuard], component: StudentsContComponent },
   { path: ':user/profile', canActivate: [AuthGuard], component: ProfileComponent },
   { path: 'teacher/courses/:course_name/new_task', canActivate: [AuthGuard], component: NewTaskComponent },
+  { path: 'teacher/courses/:course_name/riepilogo-teacher', canActivate: [AuthGuard], component: RiepilogoTeacherComponent },
   { path: 'teacher/courses/:course_name/task/:task_id', canActivate: [AuthGuard], component: TeacherTaskManageComponent},
   { path: 'teacher/courses/:course_name/task/:task_id/essay/:essay_id/manage_essay', canActivate: [AuthGuard], component: EssayHandleComponent},
   { path: 'teacher/courses/:course_name/update', canActivate: [AuthGuard], component: UpdateCourseComponent },
@@ -36,6 +39,7 @@ const routes: Routes = [
   { path: 'student/courses/:course_name/vms', canActivate: [AuthGuard], component: VmsContComponentComponent },
   { path: 'student/courses/:course_name/groups', canActivate: [AuthGuard], component: GroupsContComponent },
   { path: 'student/courses/:course_name/tasks', canActivate: [AuthGuard], component: TaskContComponent },
+  { path: 'student/courses/:course_name/riepilogo-student', canActivate: [AuthGuard], component: RiepilogoStudentComponent },
   { path: '**', component: PageNotFoundComponentComponent }  
 ];
 

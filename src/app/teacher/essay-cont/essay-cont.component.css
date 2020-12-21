@@ -43,3 +43,11 @@ table {
       font-size: 16px;
       margin-left: 12px;     
       }
+
+      .container{
+        padding: 6px;
+      }
+    
+      mat-card{
+        margin-bottom: 6px;
+      }

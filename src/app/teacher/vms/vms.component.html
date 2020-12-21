@@ -20,8 +20,8 @@
         <p>GBDisk:&nbsp; {{x.gbdisk}} GB</p>
         <p>GBRam:&nbsp; {{x.gbram}} GB</p> 
 
-        <button class="button_spento" *ngIf="x.status==='Spenta'">VM Spenta</button>
-        <button class="button_acceso" *ngIf="x.status==='Accesa'" color="primary" title="Avvia" (click)="openVm(x,cont.key)">Collegati</button>
+        <button mat-raised-button class="button_spento" *ngIf="x.status==='Spenta'" disabled>VM Spenta</button>
+        <button mat-raised-button class="button_acceso" *ngIf="x.status==='Accesa'" color="primary" title="Avvia" (click)="openVm(x,cont.key)">Collegati</button>
 
     </div>
        

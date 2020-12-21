@@ -1,6 +1,6 @@
-<a *ngIf="course_name" [routerLink]="['student/courses/home']"
-          mat-tab-link label="Studenti"> 
-            Studente
+<a *ngIf="course_name" [routerLink]="['student/courses/', course_name ,'riepilogo-student']"
+          mat-tab-link label="Riepilogo"> 
+            Riepilogo
           </a>
 
           <a *ngIf="course_name"  [routerLink]="['student/courses/', course_name ,'groups']"

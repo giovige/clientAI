@@ -28,6 +28,9 @@ export class StudentService {
 
   students: Student[]= [];
 
+  getStudentById(id: string): Observable<Student> {     
+    return this.http.get<Student>(this.API_PATH + 'students/'+id);
+  }
 
   getAllStudents(): Observable<Student[]> {     //tutti gli studenti => opzioni per form
     //return of(this.students);

@@ -11,6 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { RegistrationDialogComponent } from './auth/registration-dialog/registration-dialog.component';
 import { NotificationComponent } from './notification/notification.component';
 import { ConfirmDeleteDialogComponent } from './teacher/confirm-delete-dialog/confirm-delete-dialog.component';
+import { Student } from './student.model';
 
 
 @Component({
@@ -33,7 +34,6 @@ export class AppComponent implements OnInit, OnDestroy{
   routeQueryParams$: Subscription;
   username: string;
   photo: any;
-
   teamPresent: boolean;
   teamId:string;
 
@@ -87,6 +87,7 @@ constructor(private teacherService:TeacherService,private sanitizer: DomSanitize
 	    	this.tab_type=0;
         //this.username=localStorage.getItem('username');
          this.getID();
+         this.getProfessorInfo();
          this.getCoursesProf();
          this.getPhoto();
          setTimeout(() => {      //apro sidenav una volta che i corsi sono disponibili
@@ -99,6 +100,7 @@ constructor(private teacherService:TeacherService,private sanitizer: DomSanitize
         this.getCoursesForStudent();
         //this.username=localStorage.getItem('username');
         this.getID();
+        this.getStudentInfo();
         this.getPhoto();
         setTimeout(() => {      //apro sidenav una volta che i corsi sono disponibili
           this.toggleForMenuClick();
@@ -246,11 +248,30 @@ constructor(private teacherService:TeacherService,private sanitizer: DomSanitize
 
 
   clicked_course(course_name:string) {
-    if(course_name=='home' || course_name=="profile" || course_name=="new_course") 
-      this.course_name=null;
-    else
-      this.course_name=course_name;
+    if(course_name=='new_course') {
+    this.course_name="Nuovo corso"; 
+    this.show_bar=false; }
+    else if(course_name=='home') {
+    this.course_name="Home";
+    this.show_bar=false; }
+    else if(course_name=='profile') {
+    this.course_name="Profile";
+    this.show_bar=false; }
+    else {
+    this.course_name=course_name;
+    this.show_bar=true; }
+    //mostro la navbar Studenti,Consegne etc
+    
+    if (this.show_bar) {
+    this.menuAvailable = new Observable(observer=>observer.next(this.show_bar));
+    this.menuAvailable.subscribe();
+  } else {
 
+    this.menuAvailable = new Observable(observer=>observer.next(this.show_bar));
+    this.menuAvailable.subscribe();   
+}
+    this.menuAvailable = new Observable(observer=>observer.next(this.show_bar));
+  
   }
   
   
@@ -265,6 +286,22 @@ constructor(private teacherService:TeacherService,private sanitizer: DomSanitize
   getID(){
     this.id = this.authService.getUserId();
     console.log(this.id);
+  }
+
+  getStudentInfo(){
+    this.studentService.getStudentById(this.id).subscribe(
+      student => {
+        this.username = student.name + " " + student.firstName;
+      }
+    )
+  }
+
+  getProfessorInfo(){
+    this.teacherService.getProfessorById(this.id).subscribe(
+      prof => {
+        this.username = prof.name + " " + prof.firstName;
+      }
+    )
   }
 
   getCoursesForStudent(): void {

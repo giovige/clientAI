@@ -81,13 +81,14 @@ mat-form-field {
   width: 14%;
   min-width: 200px;
   margin: 0.5%;
+
 }
 
 .division{
   display: block;
 }
 
-mat-card{
+mat-card.example-card{
   float: left;
 }
 
@@ -108,10 +109,17 @@ p{
 
 .addvm{
   margin: 5px;
+  /* position: relative;
+  left: 50%;
+  transform: translate(-50%,0px); */
 }
 
 .stats{
   width: 1%;
   height: 1%;
   display: contents;
+}
+
+.container{
+  padding: 6px;
 }

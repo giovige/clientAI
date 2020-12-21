@@ -1,5 +1,5 @@
 <mat-toolbar class="T1"><mat-icon (click)=toggleForMenuClick()>menu</mat-icon>  
-  <a routerLink="/home" routerLinkActive="active">Virtual Labs</a>
+  <a class="nav-title" routerLink="/home" routerLinkActive="active">VIRTUAL LABS</a>
   <span class="example-fill-remaining-space"></span>
   
   <div class="example-label">
@@ -7,19 +7,19 @@
     <button *ngIf="!authService.loggedin" class="LogButton" mat-button routerLink="/home" routerLinkActive="active" [queryParams]="{doRegistration: true}"> Registration</button>
 
     <button *ngIf="authService.loggedin" class="LogButton" mat-button (click)="logout()"> Logout </button>
-    <button *ngIf="authService.loggedin" class="LogButton" mat-button routerLink="/{{this.id}}/profile"> Profilo </button>
+    <button (click)="clicked_course('profile')" *ngIf="authService.loggedin" class="LogButton" mat-button routerLink="/{{this.id}}/profile"> Profilo </button>
   </div>
 
 
 </mat-toolbar>
-
+<!---
 <mat-toolbar class="T2">
   <div *ngIf="course_name; else else_home">{{course_name}}</div>
   <ng-template #else_home >Benvenuto nel portale!</ng-template>
   <div *ngIf="authService.isProfessor()">&nbsp;&nbsp; (Professore: {{authService.getUserId()}})</div>
   <div *ngIf="authService.isStudent()">&nbsp;&nbsp; (Studente: {{authService.getUserId()}} )</div>
 </mat-toolbar>
-
+-->
 <mat-sidenav-container>
 
     <!-- SIDENAV -->
@@ -30,12 +30,12 @@
         
         <!--IMG INFO USER-->
         <div style="text-align: center;" class="photo_and_user">
-          <div><img style="width: 150px;" [src]="this.photo"></div>
-          <div>{{this.username}}</div>
+          <div><img class="profile_img" style="width: 150px;" [src]="this.photo"></div>
+          <div class="nav-username">{{this.username}}</div>
+          <div>{{this.id}}</div>
         </div>
 
-
-
+        <mat-divider></mat-divider>
 
         <ng-container *ngIf="course_list">
           
@@ -49,15 +49,10 @@
               Crea un nuovo corso</a>
               <!--Corsi del prof-->
               <div mat-subheader>I tuoi corsi</div>
-          <mat-list-item *ngFor="let course of courses" > 
-            <a (click)="clicked_course(course.name)" [routerLink]="['/teacher/courses/', course.name,'enrolled']">
-             {{ course.name }} </a>
-             <a (click)="clicked_delete(course.name)"><span class="material-icons">
-              delete_forever
-              </span></a>
-              <a [routerLink]="['/teacher/courses/', course.name,'update']" (click)="clicked_edit(course.name)"><span class="material-icons">
-                edit
-                </span></a>
+          <mat-list-item *ngFor="let course of courses" (click)="clicked_course(course.name)" [routerLink]="['/teacher/courses/', course.name,'riepilogo-teacher']"> 
+            <span >
+             {{ course.name }} 
+            </span>
           </mat-list-item>
 
         </section>
@@ -65,9 +60,10 @@
         <section *ngIf="authService.isStudent()">
 		  <!--Corsi studente-->
           <div mat-subheader>I tuoi corsi</div>					   
-          <mat-list-item *ngFor="let course of courses" (click)="clicked_course(course.name)" [routerLink]="['/student/courses/', course.name,'home']"> 
-            <a>
-             {{ course.name }} </a>
+          <mat-list-item *ngFor="let course of courses" (click)="clicked_course(course.name)" [routerLink]="['/student/courses/', course.name,'riepilogo-student']"> 
+            <span>
+             {{ course.name }} 
+            </span>
           </mat-list-item>
         </section>
 
@@ -86,11 +82,15 @@
     <nav mat-tab-nav-bar >
         <!--Teacher menu-->
       <div *ngIf="!tab_type; else else_tabs">
-        <app-menu-teacher [course_name]="course_name" name="menu-teacher"></app-menu-teacher> 
+        <div *ngIf="menuAvailable | async">
+          <app-menu-teacher [course_name]="course_name" name="menu-teacher"></app-menu-teacher> 
+        </div>
       </div>
       <!--Student menu-->
       <ng-template #else_tabs>
-        <app-menu-student [course_name]="course_name" name="menu-student"></app-menu-student> 
+        <div *ngIf="menuAvailable | async">
+          <app-menu-student [course_name]="course_name" name="menu-student"></app-menu-student> 
+        </div>
       </ng-template>
     </nav>
    

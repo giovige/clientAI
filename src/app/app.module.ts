@@ -60,6 +60,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ConfirmDeleteDialogComponent } from './teacher/confirm-delete-dialog/confirm-delete-dialog.component';
 import { TeacherTaskComponent } from './teacher/teacher-task/teacher-task.component';
 import { TeacherTaskManageComponent } from './teacher/teacher-task-manage/teacher-task-manage.component';
+import { RiepilogoTeacherComponent } from './teacher/riepilogo-teacher/riepilogo-teacher.component';
+import { RiepilogoStudentComponent } from './student/riepilogo-student/riepilogo-student.component';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   declarations: [
@@ -99,6 +102,8 @@ import { TeacherTaskManageComponent } from './teacher/teacher-task-manage/teache
     ConfirmDeleteDialogComponent,
     TeacherTaskComponent,
     TeacherTaskManageComponent,
+    RiepilogoTeacherComponent,
+    RiepilogoStudentComponent,
   ],
   imports: [
     BrowserModule,
@@ -125,7 +130,8 @@ import { TeacherTaskManageComponent } from './teacher/teacher-task-manage/teache
     MatSelectModule,
     MatRadioModule,
     MatDatepickerModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MaterialFileInputModule
   ],
   providers: [ {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true} ],
   bootstrap: [AppComponent],

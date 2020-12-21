@@ -1,10 +1,24 @@
 <div class="container" *ngIf="inAteamObs | async ; else elseBlock">
 
-<section>
-     <button mat-raised-button (click)="openDialogAdd()" class="addvm" color="warn"><mat-icon>add</mat-icon>&nbsp;New Vm</button> 
-</section>
 
 <div class="division">
+<mat-card style="text-align: center;">
+    <mat-divider [vertical]="true"></mat-divider>
+    <mat-divider [vertical]="true"></mat-divider>
+    <mat-card-title>
+        Le mie virtual machines
+    </mat-card-title>
+    <mat-divider></mat-divider>
+    <br>
+<mat-divider [vertical]="true"></mat-divider>
+<mat-divider [vertical]="true"></mat-divider>
+<mat-card-content>
+    <section>Interagisci con le virtual machines attraverso i bottoni. Potrai accendere/spegnere le vms, modificare gli owners ed i parametri ed accedere alla vm.</section>
+    <section>
+      <button mat-raised-button (click)="openDialogAdd()" class="addvm" color="warn"><mat-icon>add</mat-icon>&nbsp;New Vm</button> 
+    </section>
+</mat-card-content>
+</mat-card>
 
 <mat-card class="example-card" *ngFor="let virt of dataSource">
   <mat-card-header>
@@ -37,7 +51,6 @@
 </mat-card> 
 
 </div>
-
 </div>
 
 <ng-template #elseBlock>

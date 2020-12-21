@@ -1,12 +1,7 @@
 <div class="container" *ngIf="inAteamObs | async ; else elseBlock">
+  <mat-card>
       <!-- <span class="mat-title"><mat-icon>label_important</mat-icon>Il mio Gruppo:</span> -->
-  
-      <mat-form-field style="width:15vw; height: 4vw;" class="nomegruppo" appearance="fill">
-        <mat-label style="text-align: left;"><mat-icon>label_important</mat-icon>Il mio Gruppo:</mat-label>
-        <input matInput style="text-align: center;" class="grouptext" value={{team_name}} disabled>
-      </mat-form-field>
-      <br>
-      <br>
+      <mat-card-title>Membri del gruppo {{team_name}}</mat-card-title>
       <table mat-table #table [dataSource]="group" matSort > 
         <ng-container matColumnDef="select">
           <th mat-header-cell *matHeaderCellDef>
@@ -29,8 +24,9 @@
         <tr mat-header-row *matHeaderRowDef="groupColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: groupColumns;"></tr>       
       </table>
+    </mat-card>
     </div>
-
+  
 
 
 

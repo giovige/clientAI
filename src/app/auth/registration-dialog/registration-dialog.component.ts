@@ -77,8 +77,9 @@ getErrorCognomeMessage() {
     console.log(val.role);
     if(!this.form.invalid) {
       let check_email = val.email.split("@");
-      if((val.role=="ROLE_STUDENT" && check_email[1]=="studenti.polito.it") || 
-       (val.role=="ROLE_PROFESSOR" && check_email[1]=="polito.it") ) 
+      let matricola = val.matricola;
+      if((val.role=="ROLE_STUDENT" && check_email[1]=="studenti.polito.it"  && matricola.startsWith("s") && matricola==check_email[0]) || 
+       (val.role=="ROLE_PROFESSOR" && check_email[1]=="polito.it"  && matricola.startsWith("d") && matricola==check_email[0]) ) 
        //selezionato ed inserito email coerente al ruolo
        {
       this.userDTO.username=val.matricola;
@@ -100,8 +101,8 @@ getErrorCognomeMessage() {
               this.openDialog_notification_confirm("Si è verificato un errore: lo username è già registrato nel sistema.");
               this.myError='Registration error!'}
           );
-    } 
-  else this.myError="Email e ruolo non compatibili"; }
+    }
+    else this.myError="La matricola non è compatibile con il nostro sistema. Controlla l'email/la matricola o il ruolo scelto"; }
     else this.myError="Invalid form";
   }
 
