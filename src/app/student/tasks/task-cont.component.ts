@@ -160,7 +160,7 @@ addEssay():void {
         },
 
         err => {
-          this.openDialog_notification_confirm("Il tuo elaborato ha una dimensione eccessiva! Riprova con un file più piccolo.")
+          this.openDialog_notification_confirm("Si è verificato un problema!")
 
         }
 

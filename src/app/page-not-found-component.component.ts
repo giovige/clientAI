@@ -6,10 +6,10 @@ import { ActivatedRoute } from '@angular/router';
   template: `
     <div style="text-align: center;"> 
     <h1>
-    <br>Benvenuto Studente!<br>
-    Questa è la pagina del corso.
+    <br>Errore!<br>
+    Pagina non disponibile.
     </h1>
-    <h3>Seleziona una tab per accedere alle informazioni del corso selezionato.</h3>
+   
     </div>
     
   `,
@@ -18,10 +18,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PageNotFoundComponentComponent implements OnInit {
 
-  coursename: string;
-
   
-  constructor(private activatedRoute: ActivatedRoute) { 
+  constructor() { 
   }
 
   ngOnInit(): void {
