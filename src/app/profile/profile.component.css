@@ -1,5 +1,6 @@
 .card_profilo {
-    max-width: 400px;
+    /*max-width: 400px;*/
+    max-width: max-content;
     margin-left:20px;
   }
   
