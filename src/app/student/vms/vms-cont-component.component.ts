@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 import { ShowVmDialogComponent } from './show_vm/show-vm-dialog.component';
 import { DomSanitizer } from '@angular/platform-browser';
 import { EditOwnersComponent } from './edit-owners/edit-owners.component';
+import { NotificationComponent } from 'src/app/notification/notification.component';
 
 @Component({
   selector: 'app-vms-cont-component',
@@ -104,6 +105,20 @@ export class VmsContComponentComponent implements OnInit {
       }
 
 
+      //dialog notifiche
+      
+  openDialog_notification_confirm(msg: string): void {
+    const dialogRef = this.dialog.open(NotificationComponent, {
+      width: '400px',
+      height: '250px',
+      data: {
+        text: msg
+      }
+    }); 
+  }
+
+
+
 
 
     getTeamVms(stud_id: string, teamId: number): void {
@@ -126,6 +141,10 @@ export class VmsContComponentComponent implements OnInit {
     changeVMstatus(vmId: number): void {
       this.studentService.changeStatusToVM(this.studentID, this.teamId, vmId).subscribe( end => {
         this.getTeamVms(this.studentID, this.teamId);
+      },
+      err => {
+        this.openDialog_notification_confirm("Impossibile cambiare lo stato. Verificare i parametri della Vm");
+        
       });
     }
 
