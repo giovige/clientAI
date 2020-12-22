@@ -11,12 +11,10 @@ export class MenuTeacherComponent implements OnInit {
 
 @Input() course_name:string;
 
-ngOnChanges() {
-        }
-  constructor(   ) {  }
+ngOnChanges() {}
+
+  constructor() {}
 
 
   ngOnInit(): void {
-  }
-
 }

@@ -271,6 +271,9 @@ constructor(private teacherService:TeacherService,private sanitizer: DomSanitize
     this.menuAvailable.subscribe();   
 }
     this.menuAvailable = new Observable(observer=>observer.next(this.show_bar));
+
+    console.log(this.course_name);
+
   
   }
   

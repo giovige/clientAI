@@ -19,7 +19,8 @@ export class RiepilogoTeacherComponent implements OnInit {
     this.activatedRoute.params.subscribe(p => {
       this.course_name = p['course_name'];
       } )
-      this.appComponent.clicked_course("this.course_name");
+      //per la barra menu
+      this.appComponent.clicked_course(this.course_name);
    }
 
   ngOnInit(): void {

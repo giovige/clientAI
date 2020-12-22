@@ -62,7 +62,6 @@ import { TeacherTaskComponent } from './teacher/teacher-task/teacher-task.compon
 import { TeacherTaskManageComponent } from './teacher/teacher-task-manage/teacher-task-manage.component';
 import { RiepilogoTeacherComponent } from './teacher/riepilogo-teacher/riepilogo-teacher.component';
 import { RiepilogoStudentComponent } from './student/riepilogo-student/riepilogo-student.component';
-import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 @NgModule({
   declarations: [
@@ -131,7 +130,6 @@ import { MaterialFileInputModule } from 'ngx-material-file-input';
     MatRadioModule,
     MatDatepickerModule,
     MatProgressSpinnerModule,
-    MaterialFileInputModule
   ],
   providers: [ {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true} ],
   bootstrap: [AppComponent],
